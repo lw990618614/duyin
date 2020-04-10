@@ -1,0 +1,375 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		187E01392440672800E24813 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187E01382440672800E24813 /* UIKit.framework */; };
+		187E013B2440672800E24813 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187E013A2440672800E24813 /* Foundation.framework */; };
+		187E013D2440672800E24813 /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187E013C2440672800E24813 /* CydiaSubstrate.framework */; };
+		187E01462440672800E24813 /* MYDYHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 187E01452440672800E24813 /* MYDYHelper.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		187E01352440672800E24813 /* MYDYHelper.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = MYDYHelper.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		187E01382440672800E24813 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		187E013A2440672800E24813 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		187E013C2440672800E24813 /* CydiaSubstrate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CydiaSubstrate.framework; path = Library/Frameworks/CydiaSubstrate.framework; sourceTree = DEVELOPER_DIR; };
+		187E01412440672800E24813 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		187E01432440672800E24813 /* MYDYHelper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MYDYHelper-Prefix.pch"; path = "../MYDYHelper-Prefix.pch"; sourceTree = "<group>"; };
+		187E01442440672800E24813 /* MYDYHelper.xm */ = {isa = PBXFileReference; lastKnownFileType = text; path = MYDYHelper.xm; sourceTree = "<group>"; };
+		187E01452440672800E24813 /* MYDYHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MYDYHelper.mm; sourceTree = "<group>"; };
+		187E014A2440672800E24813 /* MYDYHelper.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MYDYHelper.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		187E01312440672800E24813 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				187E01392440672800E24813 /* UIKit.framework in Frameworks */,
+				187E013B2440672800E24813 /* Foundation.framework in Frameworks */,
+				187E013D2440672800E24813 /* CydiaSubstrate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		187E012A2440672800E24813 = {
+			isa = PBXGroup;
+			children = (
+				187E013E2440672800E24813 /* MYDYHelper */,
+				187E01372440672800E24813 /* Frameworks */,
+				187E01362440672800E24813 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		187E01362440672800E24813 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				187E01352440672800E24813 /* MYDYHelper.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		187E01372440672800E24813 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				187E01382440672800E24813 /* UIKit.framework */,
+				187E013A2440672800E24813 /* Foundation.framework */,
+				187E013C2440672800E24813 /* CydiaSubstrate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		187E013E2440672800E24813 /* MYDYHelper */ = {
+			isa = PBXGroup;
+			children = (
+				187E01442440672800E24813 /* MYDYHelper.xm */,
+				187E01452440672800E24813 /* MYDYHelper.mm */,
+				187E013F2440672800E24813 /* Package */,
+				187E01422440672800E24813 /* Supporting Files */,
+			);
+			path = MYDYHelper;
+			sourceTree = "<group>";
+		};
+		187E013F2440672800E24813 /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				187E01402440672800E24813 /* DEBIAN */,
+				187E01472440672800E24813 /* Library */,
+			);
+			path = Package;
+			sourceTree = "<group>";
+		};
+		187E01402440672800E24813 /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				187E01412440672800E24813 /* control */,
+			);
+			path = DEBIAN;
+			sourceTree = "<group>";
+		};
+		187E01422440672800E24813 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				187E01432440672800E24813 /* MYDYHelper-Prefix.pch */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		187E01472440672800E24813 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				187E01482440672800E24813 /* MobileSubstrate */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		187E01482440672800E24813 /* MobileSubstrate */ = {
+			isa = PBXGroup;
+			children = (
+				187E01492440672800E24813 /* DynamicLibraries */,
+			);
+			path = MobileSubstrate;
+			sourceTree = "<group>";
+		};
+		187E01492440672800E24813 /* DynamicLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				187E014A2440672800E24813 /* MYDYHelper.plist */,
+			);
+			path = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		187E01322440672800E24813 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		187E01342440672800E24813 /* MYDYHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 187E014D2440672800E24813 /* Build configuration list for PBXNativeTarget "MYDYHelper" */;
+			buildPhases = (
+				187E012F2440672800E24813 /* ShellScript */,
+				187E01302440672800E24813 /* Sources */,
+				187E01312440672800E24813 /* Frameworks */,
+				187E01322440672800E24813 /* Headers */,
+				187E01332440672800E24813 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MYDYHelper;
+			productName = MYDYHelper;
+			productReference = 187E01352440672800E24813 /* MYDYHelper.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		187E012B2440672800E24813 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1140;
+				TargetAttributes = {
+					187E01342440672800E24813 = {
+						CreatedOnToolsVersion = 11.4;
+					};
+				};
+			};
+			buildConfigurationList = 187E012E2440672800E24813 /* Build configuration list for PBXProject "MYDYHelper" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 187E012A2440672800E24813;
+			productRefGroup = 187E01362440672800E24813 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				187E01342440672800E24813 /* MYDYHelper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		187E012F2440672800E24813 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp-logos";
+		};
+		187E01332440672800E24813 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		187E01302440672800E24813 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				187E01462440672800E24813 /* MYDYHelper.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		187E014B2440672800E24813 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /opt/theos;
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"MYDYHelper\\\"\"";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		187E014C2440672800E24813 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /opt/theos;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"MYDYHelper\\\"\"";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		187E014E2440672800E24813 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W9NR59G3WD;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MYDYHelper/MYDYHelper-Prefix.pch";
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				MonkeyDevBuildPackageOnAnyBuild = NO;
+				MonkeyDevClearUiCacheOnInstall = NO;
+				MonkeyDevCopyOnBuild = NO;
+				MonkeyDevDeviceIP = "";
+				MonkeyDevDevicePassword = "";
+				MonkeyDevDevicePort = "";
+				MonkeyDevInstallOnAnyBuild = YES;
+				MonkeyDevInstallOnProfiling = YES;
+				MonkeyDevkillProcessOnInstall = SpringBoard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		187E014F2440672800E24813 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W9NR59G3WD;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MYDYHelper/MYDYHelper-Prefix.pch";
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				MonkeyDevBuildPackageOnAnyBuild = NO;
+				MonkeyDevClearUiCacheOnInstall = NO;
+				MonkeyDevCopyOnBuild = NO;
+				MonkeyDevDeviceIP = "";
+				MonkeyDevDevicePassword = "";
+				MonkeyDevDevicePort = "";
+				MonkeyDevInstallOnAnyBuild = YES;
+				MonkeyDevInstallOnProfiling = YES;
+				MonkeyDevkillProcessOnInstall = SpringBoard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		187E012E2440672800E24813 /* Build configuration list for PBXProject "MYDYHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				187E014B2440672800E24813 /* Release */,
+				187E014C2440672800E24813 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		187E014D2440672800E24813 /* Build configuration list for PBXNativeTarget "MYDYHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				187E014E2440672800E24813 /* Release */,
+				187E014F2440672800E24813 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 187E012B2440672800E24813 /* Project object */;
+}
