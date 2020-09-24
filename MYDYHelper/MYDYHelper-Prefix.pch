@@ -5,4 +5,54 @@
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import "/opt/theos/Prefix.pch"  //path/to/theos/Prefix.pch
+#import "DYHelperHeader.h"  //path/to/theos/Prefix.pch
+
+#import "WHCFileManager.h"
+#import "DYCommonApi.h"
+#import "DYFeedManager.h"
+#import "DYLoginManager.h"
+#import "AFNetworking.h"
+#import "DYDeviceModel.h"
+#import "UserAccount.h"
+#import "MJExtension.h"
+#import "DYFollowManager.h"
+#import "DYShareManager.h"
+#import "DYCommentManager.h"
+#import "DYLikeManager.h"
+#import "DYDeviceManager.h"
+#import "DYTaskManager.h"
+#import "DYTaskModel.h"
+#import "LGWeChatParamQueue.h"
+#import "NSTimer+FY.h"
+#import "SocketManager.h"
+#import "DYGetDataManager.h"
+
+#define kNotificationUserCenterRecived @"NotificationUserCenterRecived"
+#define kNotificationAddPlusBtnClick @"NotificationAddPlusBtnClick" 
+#define kNotificationCommentsRecived @"NotificationCommentsRecived"
+#define kNotificationDiDFillInTheCode @"NotificationDiDFillInTheCode"
+#define kNotificationDidTapPlastBoard @"NotificationDidTapPlastBoard"
+#define kNotificationDidTapShareCardView @"NotificationDidTapShareCardView"
+
+#define kTaskFilePath @"/var/mobile/Containers/Data"
+
+#define kUserFileDeviceAndTaskPath @"/var/mobile/Containers/Data/DeviceAndTaskPath/"
+#define kDevicePlist @"DouYin_Device.plist"
+#define kTaskPlist @"DouYin_Task.plist"
+
+
+
+
+#define SCREEN_BOUNDS       ([[UIScreen mainScreen] bounds])
+#define SCREEN_WIDTH        CGRectGetWidth(SCREEN_BOUNDS)
+#define SCREEN_HEIGHT       CGRectGetHeight(SCREEN_BOUNDS)
+#define WEAKSELF typeof(self) __weak weakSelf = self
+
+
+//#define kAddressHost @"192.168.199.112"
+//#define kAddressPort @"61235"
+
+#define kAddressHost @"192.168.199.146"
+#define kAddressPort @"61239"
 #endif
+
