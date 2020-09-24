@@ -17,20 +17,6 @@
 
 /* ---------------        这是任务hook 代码           ----------    */
 
-%hook DYSoketManager
--(void)viewDidLoad{
-
-[[[UIAlertView alloc]initWithTitle:NSStringFromSelector(_cmd) message:@"hhhsd" delegate:self cancelButtonTitle:@"cancdddddel取消" otherButtonTitles:nil] show];
-
-return %orig;
-
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return %orig;
-
-}
-
-%end
 
 %hook AppDelegate
 
