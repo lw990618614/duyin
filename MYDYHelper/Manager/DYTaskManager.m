@@ -18,5 +18,11 @@
     return queue;
 }
 
+-(BOOL)hasLogined{
+//    [reu isKindOfClass:%c(HTSLiveScreenChatMessage)]
+//   BOOL r =  [[AWELanguageSelectionPopupManager sharedInstance] userLogined];
+//    NSLog(@"hasLoginedhasLoginedhasLogined r %d",r);
+    return NO;
+}
 
 @end

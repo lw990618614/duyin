@@ -25,7 +25,6 @@
 -(void)setFinishTime:(NSInteger)finishTime{
     _finishTime = finishTime;
     [self  performSelector:@selector(feedTaskDidFinsh) withObject:nil afterDelay:finishTime];
-//    [self  performSelector:@selector(feedTaskDidFinsh) withObject:nil afterDelay:60];
 }
 
 - (NSTimer *)timer {
@@ -85,7 +84,7 @@
             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
             [NSThread sleepForTimeInterval:0.1];
             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
-
+            
         });
         
     }
@@ -98,96 +97,112 @@
 
 
 -(void)arcradomToSetUserAction{
-    int x = arc4random() % 30;
-    if (x <= 29 && x >27) {
-        [self upSlideAndLikeUserAction];
-    }else if (x <28 && x > 10){
-        [self upSlideUserAction];
-    }else{
-        [self upOnlySlideUserAction];
-    }
+    UIViewController *vc = [self getCurrentVC];
+
+
+        int x = arc4random() % 30;
+        if (x <= 29 && x >27) {
+            [self upSlideAndLikeUserAction];
+        }else if (x <28 && x > 10){
+            [self upSlideUserAction];
+        }else{
+            [self upOnlySlideUserAction];
+        }
+
     
 }
 
 -(void)upOnlySlideUserAction{
     int arcradom =  12 + (arc4random() % 5);
-
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradom * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-         int arcradom =(arc4random() % 20);
-             int locationX =100 +  arcradom;
-             int locationY =500 +  arcradom;
-             NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
-             [NSThread sleepForTimeInterval:0.2];
+        UIViewController *vc = [self getCurrentVC];
+        [[DYTaskManager sharedQueue] hasLogined];
 
-             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseMoved)];
-             [NSThread sleepForTimeInterval:0.2];
-             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseEnded)];
+         NSLog(@"UIViewControllerUIViewController = %@",vc);
+
+
+        int arcradom =(arc4random() % 20);
+        int locationX =100 +  arcradom;
+        int locationY =500 +  arcradom;
+        NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+        [NSThread sleepForTimeInterval:0.2];
+        
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseMoved)];
+        [NSThread sleepForTimeInterval:0.2];
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseEnded)];
         [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:(arc4random() % 5 + 1)];
-
+        
     });
     
-
-
+    
+    
 }
 
 
 -(void)upSlideUserAction{
     int arcradom =  12 + (arc4random() % 5);
-
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradom * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-         int arcradom =(arc4random() % 20);
-             int locationX =100 +  arcradom;
-             int locationY =500 +  arcradom;
-             NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
-             [NSThread sleepForTimeInterval:0.2];
+        
 
-             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseMoved)];
-             [NSThread sleepForTimeInterval:0.2];
-             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseEnded)];
+        int arcradom =(arc4random() % 20);
+        int locationX =100 +  arcradom;
+        int locationY =500 +  arcradom;
+        NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+        [NSThread sleepForTimeInterval:0.2];
+        
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseMoved)];
+        [NSThread sleepForTimeInterval:0.2];
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseEnded)];
         [self  performSelector:@selector(getMovieUserInfo) withObject:nil afterDelay:(arc4random() % 5 + 1)];
-
+        
     });
     
-
-
+    
+    
 }
 
 -(void)getMovieUserInfo{
     int arcradomX =  40 + (arc4random() % 20);
     int arcradomY =  50 + (arc4random() % 30);
-
+    
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-             int locationX =250 +  arcradomX;
-             int locationY =200 +  arcradomY;
-             NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
-             [NSThread sleepForTimeInterval:0.2];
+        
 
-             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX - 260, locationY) withTouchPhase:(UITouchPhaseMoved)];
-             [NSThread sleepForTimeInterval:0.2];
-             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX - 260, locationY) withTouchPhase:(UITouchPhaseEnded)];
+        int locationX =250 +  arcradomX;
+        int locationY =200 +  arcradomY;
+        NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+        [NSThread sleepForTimeInterval:0.2];
+        
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX - 260, locationY) withTouchPhase:(UITouchPhaseMoved)];
+        [NSThread sleepForTimeInterval:0.2];
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX - 260, locationY) withTouchPhase:(UITouchPhaseEnded)];
         
         NSLog(@"getMovieUserInfo333333");
-
+        
     });
-
+    
     int arcradomTime=  3 + (arc4random() % 3);
-
-
+    
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradomTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-             int locationX =100 +  arcradomX;
-             int locationY =200 +  arcradomY;
-             NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
-             [NSThread sleepForTimeInterval:0.2];
+        
 
-             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX + 200, locationY) withTouchPhase:(UITouchPhaseMoved)];
-             [NSThread sleepForTimeInterval:0.2];
-             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX + 200, locationY) withTouchPhase:(UITouchPhaseEnded)];
+        int locationX =100 +  arcradomX;
+        int locationY =200 +  arcradomY;
+        NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+        [NSThread sleepForTimeInterval:0.2];
+        
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX + 200, locationY) withTouchPhase:(UITouchPhaseMoved)];
+        [NSThread sleepForTimeInterval:0.2];
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX + 200, locationY) withTouchPhase:(UITouchPhaseEnded)];
         [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:2];
-
+        
     });
-
-
+    
+    
     
 }
 
@@ -195,53 +210,89 @@
 -(void)upSlideAndLikeUserAction{
     
     int arcradom =  12 + (arc4random() % 5);
-
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradom * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-         int arcradom =(arc4random() % 20);
-             int locationX =100 +  arcradom;
-             int locationY =500 +  arcradom;
-             NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
-             [NSThread sleepForTimeInterval:1];
-             
-             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseMoved)];
-             [NSThread sleepForTimeInterval:0.3];
-             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseEnded)];
-             [self  performSelector:@selector(doubleClickToLikeUserAction) withObject:nil afterDelay:arcradom-2];
+        
+
+        int arcradom =(arc4random() % 20);
+        int locationX =100 +  arcradom;
+        int locationY =500 +  arcradom;
+        NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+        [NSThread sleepForTimeInterval:1];
+        
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseMoved)];
+        [NSThread sleepForTimeInterval:0.3];
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseEnded)];
+        [self  performSelector:@selector(doubleClickToLikeUserAction) withObject:nil afterDelay:arcradom-2];
         
     });
-
+    
 }
 
 -(void)doubleClickToLikeUserAction{
-        int arcradom =  3 + (arc4random() % 2);
-        float loca =arcradom *1.0 / 10;
+    int arcradom =  3 + (arc4random() % 2);
+    float loca =arcradom *1.0 / 10;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            int locationX =SCREEN_WIDTH *loca;;
-            int locationY =SCREEN_HEIGHT *0.5;
+        int locationX =SCREEN_WIDTH *loca;;
+        int locationY =SCREEN_HEIGHT *0.5;
         NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
         //      [NSThread sleepForTimeInterval:0.3];
         [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
         [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
-                
-            [NSThread sleepForTimeInterval:0.1];
-
-            NSInteger Id1 = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
-            //      [NSThread sleepForTimeInterval:0.3];
-            [PTFakeTouch fakeTouchId:Id1 AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
-            //      [NSThread sleepForTimeInterval:0.3];
-            [PTFakeTouch fakeTouchId:Id1 AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
-            
-            [NSThread sleepForTimeInterval:0.1];
-
-            NSInteger Id2 = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
-            //      [NSThread sleepForTimeInterval:0.3];
-            [PTFakeTouch fakeTouchId:Id2 AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
-            //      [NSThread sleepForTimeInterval:0.3];
-            [PTFakeTouch fakeTouchId:Id2 AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
-            [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:2];
+        
+        [NSThread sleepForTimeInterval:0.1];
+        
+        NSInteger Id1 = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+        //      [NSThread sleepForTimeInterval:0.3];
+        [PTFakeTouch fakeTouchId:Id1 AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
+        //      [NSThread sleepForTimeInterval:0.3];
+        [PTFakeTouch fakeTouchId:Id1 AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
+        
+        [NSThread sleepForTimeInterval:0.1];
+        
+        NSInteger Id2 = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+        //      [NSThread sleepForTimeInterval:0.3];
+        [PTFakeTouch fakeTouchId:Id2 AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
+        //      [NSThread sleepForTimeInterval:0.3];
+        [PTFakeTouch fakeTouchId:Id2 AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
+        [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:2];
     });
-
+    
     
 }
+
+- (UIViewController *)getCurrentVC
+{
+   ///下文中有分析
+    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *currentVC = [self getCurrentVCFrom:rootViewController];
+    return currentVC;
+}
+
+- (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC
+{
+    UIViewController *currentVC;
+    if ([rootVC presentedViewController]) {
+        // 视图是被presented出来的
+        rootVC = [rootVC presentedViewController];
+    }
+
+    if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        // 根视图为UITabBarController
+        currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
+    } else if ([rootVC isKindOfClass:[UINavigationController class]]){
+        // 根视图为UINavigationController
+        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
+    } else {
+        // 根视图为非导航类
+        currentVC = rootVC;
+    }
+    
+    return currentVC;
+}
+
 @end

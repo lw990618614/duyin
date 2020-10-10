@@ -1,5 +1,6 @@
 
 #import <UIKit/UIKit.h>
+typedef void(^Block)();
 
 @interface AWEUserDetailViewController  :UIViewController
 @property(copy, nonatomic) NSString *userID; // @synthesize userID=_userID;有值
@@ -299,12 +300,44 @@
 - (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;
 
 @end
-typedef void(^Block)();
+
 @interface AWEFamiliarAlertPopupView // Remaining properties
 @property(copy, nonatomic) Block tapCloseBtnBlock; // @synthesize tapCloseBtnBlock=_tapCloseBtnBlock;
 - (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;
 - (void)popViewShouldDissMiss;
 @end
+
+
+
+@interface DYQuickLoginLoadingViewController
+
+@end
+
+@interface AWEAwemeDetailTableViewController
+
+@end
+
+@interface AWEUserProfileSlidingScrollView
+
+@end
+
+@interface AWEFeedRootViewController
++ (id)class;
+
+@end
+
+
+@interface AWELanguageSelectionPopupManager
++ (id)sharedInstance;
+@property(nonatomic) _Bool userLogined; // @synthesize userLogined=_userLogined;
+@end
+
+
+
+
+
+
+
 
 
 

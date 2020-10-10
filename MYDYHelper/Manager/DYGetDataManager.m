@@ -150,7 +150,6 @@
         NSDictionary *user =self.dataArray[0];
         [self searchTheTargetUserWithUserID:user[@"user"][@"id_str"]];
         [self performSelector:@selector(dimissTheView) withObject:nil afterDelay:3.5];
-
     }
 
 }

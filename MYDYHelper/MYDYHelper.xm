@@ -20,15 +20,45 @@
 
 %hook AppDelegate
 
-- (_Bool)application:(id)arg1 didFinishLaunchingWithOptions:(id)arg2{
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [[LGWeChatParamQueue sharedQueue] task_isDoing];
     
+     BOOL re =  [[%c(AWELanguageSelectionPopupManager) sharedInstance] userLogined];
+    NSLog(@"applicatioapplicationDidBecomeActivenDidBecomeActive = %d",re);
+
     return %orig;
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[LGWeChatParamQueue sharedQueue] task_isDoing];
-    return %orig;
+%new
+- (BOOL)getUserLogined{
+    
+    BOOL re =[[%c(AWELanguageSelectionPopupManager) sharedInstance] userLogined];
+    
+    return re;
 }
+
+%new
+- (NSString *)compareCurrentVc:(UIViewController *)vc{
+    
+    if([vc isKindOfClass:%c(DYQuickLoginLoadingViewController)]){//用户评论
+        
+    }else if([vc isKindOfClass:%c(AWEAwemeDetailTableViewController)]){
+        
+    }else if([vc isKindOfClass:%c(AWEUserProfileSlidingScrollView)]){
+        
+    }else if([vc isKindOfClass:%c(AWEFeedRootViewController)]){
+        
+    }else if([vc isKindOfClass:%c(AWEUserDetailViewController)]){
+        
+    }
+
+
+
+
+    return @"0";
+}
+
+
 %end
 
 
@@ -37,6 +67,7 @@
     [[LGWeChatParamQueue sharedQueue] delyStartTheTask];
     return %orig;
 }
+
 
 %end
 
@@ -133,23 +164,14 @@
 //通过url链接进入某个主播页面或者 链接
 %hook AWEShareTokenNoteCardView
 - (id)init{
-    //    static dispatch_once_t onceToken;
-    //    dispatch_once(&onceToken, ^{
-    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotoVideo) name:kNotificationDidTapShareCardView object:nil];
-    //    });
     return %orig;
 }
 
-- (void)gotoVideo{
-    
-    return %orig;
-}
 
 - (void)setupUI{
     if([DYTaskManager sharedQueue].model.task_id.intValue == 10001){
         [[DYLikeManager sharedQueue] tapTheShareViewToEnterTheheMovieView];
         NSLog(@"DYLikeManager  orig = DYLikeManager");
-
     }else if([DYTaskManager sharedQueue].model.task_id.intValue == 60001){
         [[DYCommentManager sharedQueue] tapTheShareViewToEnterTheMovieViewAndComment];
     }

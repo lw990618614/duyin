@@ -119,6 +119,7 @@
 		187E013B2440672800E24813 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187E013A2440672800E24813 /* Foundation.framework */; };
 		187E013D2440672800E24813 /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187E013C2440672800E24813 /* CydiaSubstrate.framework */; };
 		187E01512440676100E24813 /* MYDYHelper-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 187E01502440676100E24813 /* MYDYHelper-Prefix.pch */; };
+		E076AB4AA2CD0D589AA0D04E /* Pods_MYDYHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B50EF3643F80B5DC4A08F6AE /* Pods_MYDYHelper.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +252,9 @@
 		187E01412440672800E24813 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
 		187E014A2440672800E24813 /* MYDYHelper.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MYDYHelper.plist; sourceTree = "<group>"; };
 		187E01502440676100E24813 /* MYDYHelper-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MYDYHelper-Prefix.pch"; path = "MYDYHelper/MYDYHelper-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		76C062ECB5406E5AD31005F5 /* Pods-MYDYHelper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYDYHelper.debug.xcconfig"; path = "Target Support Files/Pods-MYDYHelper/Pods-MYDYHelper.debug.xcconfig"; sourceTree = "<group>"; };
+		77F8386AB9816FAA10DD9D6F /* Pods-MYDYHelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYDYHelper.release.xcconfig"; path = "Target Support Files/Pods-MYDYHelper/Pods-MYDYHelper.release.xcconfig"; sourceTree = "<group>"; };
+		B50EF3643F80B5DC4A08F6AE /* Pods_MYDYHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYDYHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +276,7 @@
 				1817F2D52444530A0089DC53 /* Security.framework in Frameworks */,
 				187E013D2440672800E24813 /* CydiaSubstrate.framework in Frameworks */,
 				18275DD2247FBC7800455C4A /* IOKit.framework in Frameworks */,
+				E076AB4AA2CD0D589AA0D04E /* Pods_MYDYHelper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +474,7 @@
 				187E013E2440672800E24813 /* MYDYHelper */,
 				187E01372440672800E24813 /* Frameworks */,
 				187E01362440672800E24813 /* Products */,
+				B6F495A57EA2B31D373037A0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -497,6 +503,7 @@
 				187E01382440672800E24813 /* UIKit.framework */,
 				187E013A2440672800E24813 /* Foundation.framework */,
 				187E013C2440672800E24813 /* CydiaSubstrate.framework */,
+				B50EF3643F80B5DC4A08F6AE /* Pods_MYDYHelper.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -561,6 +568,16 @@
 				187E014A2440672800E24813 /* MYDYHelper.plist */,
 			);
 			path = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+		B6F495A57EA2B31D373037A0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				77F8386AB9816FAA10DD9D6F /* Pods-MYDYHelper.release.xcconfig */,
+				76C062ECB5406E5AD31005F5 /* Pods-MYDYHelper.debug.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -632,6 +649,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 187E014D2440672800E24813 /* Build configuration list for PBXNativeTarget "MYDYHelper" */;
 			buildPhases = (
+				2B5F9B7F7A860560DB4CF740 /* [CP] Check Pods Manifest.lock */,
 				187E012F2440672800E24813 /* ShellScript */,
 				187E01302440672800E24813 /* Sources */,
 				187E01312440672800E24813 /* Frameworks */,
@@ -711,8 +729,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "\n";
 		};
 		187E012F2440672800E24813 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -747,6 +764,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/opt/MonkeyDev/bin/md --xcbp\n";
+		};
+		2B5F9B7F7A860560DB4CF740 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MYDYHelper-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -867,6 +906,7 @@
 		};
 		187E014E2440672800E24813 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77F8386AB9816FAA10DD9D6F /* Pods-MYDYHelper.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -887,7 +927,7 @@
 				MonkeyDevBuildPackageOnAnyBuild = NO;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
-				MonkeyDevDeviceIP = 192.168.199.161;
+				MonkeyDevDeviceIP = 192.168.199.103;
 				MonkeyDevDevicePassword = "";
 				MonkeyDevDevicePort = 22;
 				MonkeyDevInstallOnAnyBuild = YES;
@@ -901,6 +941,7 @@
 		};
 		187E014F2440672800E24813 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76C062ECB5406E5AD31005F5 /* Pods-MYDYHelper.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -921,7 +962,7 @@
 				MonkeyDevBuildPackageOnAnyBuild = NO;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
-				MonkeyDevDeviceIP = 192.168.199.161;
+				MonkeyDevDeviceIP = 192.168.199.103;
 				MonkeyDevDevicePassword = "";
 				MonkeyDevDevicePort = 22;
 				MonkeyDevInstallOnAnyBuild = YES;

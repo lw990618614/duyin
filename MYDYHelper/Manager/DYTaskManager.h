@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DYTaskManager : NSObject
+
 +(instancetype)sharedQueue;
 //@property (nonatomic, strong) NSString *city;
 //@property (nonatomic, strong) NSString *group_id;
@@ -28,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic, strong) NSString *starTime;//任务开始时间
 //@property (nonatomic, strong) NSString *task_type;//
 @property (nonatomic, strong) DYTaskModel *model;//
+
+-(BOOL)hasLogined;
 
 @end
 
