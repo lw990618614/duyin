@@ -332,6 +332,26 @@ typedef void(^Block)();
 @property(nonatomic) _Bool userLogined; // @synthesize userLogined=_userLogined;
 @end
 
+@interface AWEFeedSegmentedControl
+- (void)setSelectedIndex:(long long)arg1 animated:(_Bool)arg2 tapped:(_Bool)arg3;
+@property(nonatomic) long long selectedIndex; // @synthesize selectedIndex=_selectedIndex;
+@property(retain, nonatomic) NSArray *titles; // @synthesize titles=_titles;
+- (void)segmentedControlTapped:(long long)arg1;
+
+@end
+
+@interface AWEFeedContainerViewController
+@property(retain, nonatomic) AWEFeedSegmentedControl *segmentControl; // @synthesize segmentControl=_segmentControl;
+@end
+
+@interface AWEIMLoginManager
+- (_Bool)hasLogin;
+- (id)tokenKey;
+@property(copy, nonatomic) NSString *token; // @synthesize token=_token;
+
+@end
+
+
 
 
 

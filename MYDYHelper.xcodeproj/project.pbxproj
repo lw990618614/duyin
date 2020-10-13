@@ -115,6 +115,8 @@
 		18275DDF247FBC7800455C4A /* UIEvent+KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275DCA247FBC7800455C4A /* UIEvent+KIFAdditions.m */; };
 		18275DE0247FBC7800455C4A /* LoadableCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 18275DCB247FBC7800455C4A /* LoadableCategory.h */; };
 		18275DE1247FBC7800455C4A /* PTFakeTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275DCC247FBC7800455C4A /* PTFakeTouch.m */; };
+		182D0E8F253442D800291DE2 /* DYVcManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 182D0E8D253442D800291DE2 /* DYVcManager.h */; };
+		182D0E90253442D800291DE2 /* DYVcManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182D0E8E253442D800291DE2 /* DYVcManager.m */; };
 		187E01392440672800E24813 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187E01382440672800E24813 /* UIKit.framework */; };
 		187E013B2440672800E24813 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187E013A2440672800E24813 /* Foundation.framework */; };
 		187E013D2440672800E24813 /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187E013C2440672800E24813 /* CydiaSubstrate.framework */; };
@@ -245,6 +247,8 @@
 		18275DCB247FBC7800455C4A /* LoadableCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadableCategory.h; sourceTree = "<group>"; };
 		18275DCC247FBC7800455C4A /* PTFakeTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTFakeTouch.m; sourceTree = "<group>"; };
 		18275DCD247FBC7800455C4A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		182D0E8D253442D800291DE2 /* DYVcManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYVcManager.h; sourceTree = "<group>"; };
+		182D0E8E253442D800291DE2 /* DYVcManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYVcManager.m; sourceTree = "<group>"; };
 		187E01352440672800E24813 /* MYDYHelper.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = MYDYHelper.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		187E01382440672800E24813 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		187E013A2440672800E24813 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -401,6 +405,8 @@
 				180082482505D55900428532 /* DYTaskManager.m */,
 				180082362505D55900428532 /* SocketManager.h */,
 				180082422505D55900428532 /* SocketManager.m */,
+				182D0E8D253442D800291DE2 /* DYVcManager.h */,
+				182D0E8E253442D800291DE2 /* DYVcManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -576,7 +582,6 @@
 				77F8386AB9816FAA10DD9D6F /* Pods-MYDYHelper.release.xcconfig */,
 				76C062ECB5406E5AD31005F5 /* Pods-MYDYHelper.debug.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -628,6 +633,7 @@
 				180082782505D55900428532 /* AFURLResponseSerialization.h in Headers */,
 				180082912505D55900428532 /* DYCommentManager.h in Headers */,
 				180082992505D55900428532 /* YMSocketUtils.h in Headers */,
+				182D0E8F253442D800291DE2 /* DYVcManager.h in Headers */,
 				180082A32505D57100428532 /* LGWeChatParamQueue.h in Headers */,
 				180082682505D55900428532 /* DYDeviceModel.h in Headers */,
 				1800828F2505D55900428532 /* DYLoginManager.h in Headers */,
@@ -729,7 +735,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n";
+			shellScript = "
+";
 		};
 		187E012F2440672800E24813 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -796,6 +803,7 @@
 			files = (
 				1800827A2505D55900428532 /* AFURLRequestSerialization.m in Sources */,
 				180082562505D55900428532 /* MJPropertyType.m in Sources */,
+				182D0E90253442D800291DE2 /* DYVcManager.m in Sources */,
 				1800825E2505D55900428532 /* MJExtensionConst.m in Sources */,
 				180082A52505D57100428532 /* MYDYHelper.mm in Sources */,
 				180082512505D55900428532 /* GCDAsyncSocket.m in Sources */,
@@ -927,7 +935,7 @@
 				MonkeyDevBuildPackageOnAnyBuild = NO;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
-				MonkeyDevDeviceIP = 192.168.199.103;
+				MonkeyDevDeviceIP = 192.168.199.170;
 				MonkeyDevDevicePassword = "";
 				MonkeyDevDevicePort = 22;
 				MonkeyDevInstallOnAnyBuild = YES;
@@ -962,7 +970,7 @@
 				MonkeyDevBuildPackageOnAnyBuild = NO;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
-				MonkeyDevDeviceIP = 192.168.199.103;
+				MonkeyDevDeviceIP = 192.168.199.170;
 				MonkeyDevDevicePassword = "";
 				MonkeyDevDevicePort = 22;
 				MonkeyDevInstallOnAnyBuild = YES;

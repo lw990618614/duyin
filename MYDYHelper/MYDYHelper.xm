@@ -19,37 +19,35 @@
 
 
 %hook AppDelegate
-
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [[LGWeChatParamQueue sharedQueue] task_isDoing];
-    
-     BOOL re =  [[%c(AWELanguageSelectionPopupManager) sharedInstance] userLogined];
-    NSLog(@"applicatioapplicationDidBecomeActivenDidBecomeActive = %d",re);
-
     return %orig;
 }
 
 %new
 - (BOOL)getUserLogined{
-    
     BOOL re =[[%c(AWELanguageSelectionPopupManager) sharedInstance] userLogined];
-    
     return re;
 }
 
 %new
 - (NSString *)compareCurrentVc:(UIViewController *)vc{
     
-    if([vc isKindOfClass:%c(DYQuickLoginLoadingViewController)]){//用户评论
-        
-    }else if([vc isKindOfClass:%c(AWEAwemeDetailTableViewController)]){
-        
+    if([vc isKindOfClass:%c(DYQuickLoginLoadingViewController)]){//快速登录
+        return @"1";
+
+    }else if([vc isKindOfClass:%c(AWEAwemeDetailTableViewController)]){//
+        return @"2";
+
     }else if([vc isKindOfClass:%c(AWEUserProfileSlidingScrollView)]){
-        
-    }else if([vc isKindOfClass:%c(AWEFeedRootViewController)]){
-        
-    }else if([vc isKindOfClass:%c(AWEUserDetailViewController)]){
-        
+        return @"3";
+
+    }else if([vc isKindOfClass:%c(AWEFeedRootViewController)]){//首页
+        return @"4";
+
+    }else if([vc isKindOfClass:%c(AWEUserDetailViewController)]){//用户中心
+        return @"5";
+
     }
 
 
@@ -65,6 +63,8 @@
 %hook AWEFeedTableViewController
 - (void)viewDidLoad{
     [[LGWeChatParamQueue sharedQueue] delyStartTheTask];
+    
+
     return %orig;
 }
 
@@ -79,8 +79,9 @@
     
     return  %orig;
 }
-
 %end
+
+
 %hook NHAccountManager
 - (void)handleLoginSuccess:(unsigned long long)arg1 verificationInfo:(id)arg2 params:(id)arg3 completion:(id)arg4{
     return  %orig;
@@ -105,6 +106,13 @@
 //    [DYLoginManager sharedQueue]
     [[DYLoginManager sharedQueue]  loginSuccess];
     return  %orig;
+}
+
+-(void)setSegmentControl:(id)segmentControl{
+    [DYVcManager sharedQueue].selectVc = segmentControl;
+    
+    return  %orig;
+
 }
 
 %end

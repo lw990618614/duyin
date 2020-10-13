@@ -97,22 +97,28 @@
 
 
 -(void)arcradomToSetUserAction{
-    UIViewController *vc = [self getCurrentVC];
+    if ([DYVcManager sharedQueue].selectVc.selectedIndex != [DYVcManager sharedQueue].selectVc.titles.count -1) {
+        [[DYVcManager sharedQueue].selectVc segmentedControlTapped:([DYVcManager sharedQueue].selectVc.titles.count-1)];
 
-
+        NSLog(@"arcradomToSarcradomToSetUserActionetUserAction");
+        [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:(arc4random() % 5 + 1)];
+        
+    }else{
         int x = arc4random() % 30;
         if (x <= 29 && x >27) {
             [self upSlideAndLikeUserAction];
         }else if (x <28 && x > 10){
-            [self upSlideUserAction];
+            [self upAndGetUserInfoAction];
         }else{
-            [self upOnlySlideUserAction];
+            [self upOnlySlideAction];
         }
+
+    }
 
     
 }
 
--(void)upOnlySlideUserAction{
+-(void)upOnlySlideAction{
     int arcradom =  12 + (arc4random() % 5);
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradom * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -140,7 +146,7 @@
 }
 
 
--(void)upSlideUserAction{
+-(void)upAndGetUserInfoAction{
     int arcradom =  12 + (arc4random() % 5);
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradom * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -170,7 +176,6 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-
         int locationX =250 +  arcradomX;
         int locationY =200 +  arcradomY;
         NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
@@ -180,13 +185,9 @@
         [NSThread sleepForTimeInterval:0.2];
         [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX - 260, locationY) withTouchPhase:(UITouchPhaseEnded)];
         
-        NSLog(@"getMovieUserInfo333333");
-        
     });
     
     int arcradomTime=  3 + (arc4random() % 3);
-    
-    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradomTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
 
@@ -223,7 +224,14 @@
         [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseMoved)];
         [NSThread sleepForTimeInterval:0.3];
         [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseEnded)];
-        [self  performSelector:@selector(doubleClickToLikeUserAction) withObject:nil afterDelay:arcradom-2];
+        NSString * re =  [[DYVcManager sharedQueue].imloginManager token];
+
+        if (re.length) {
+            [self  performSelector:@selector(doubleClickToLikeUserAction) withObject:nil afterDelay:arcradom-2];
+
+        }else{
+            [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:arcradom-2];
+        }
         
     });
     

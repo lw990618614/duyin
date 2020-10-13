@@ -26,6 +26,7 @@
 #import "NSTimer+FY.h"
 #import "SocketManager.h"
 #import "DYGetDataManager.h"
+#import "DYVcManager.h"
 
 #define kNotificationUserCenterRecived @"NotificationUserCenterRecived"
 #define kNotificationAddPlusBtnClick @"NotificationAddPlusBtnClick" 
