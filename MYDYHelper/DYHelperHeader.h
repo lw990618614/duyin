@@ -353,6 +353,13 @@ typedef void(^Block)();
 
 
 
+@interface AWEAwemeModel
+@property(nonatomic) _Bool isAds; // @synthesize isAds=_isAds;
+
+@end
+
+
+
 
 
 

@@ -13,7 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) AWEFeedSegmentedControl *selectVc;
 @property (nonatomic, strong) AWEIMLoginManager *imloginManager;
 
+@property (nonatomic, assign) BOOL currentIsIds;
+@property (nonatomic, assign) BOOL nextIsIds;
+
+
+
 +(instancetype)sharedQueue;
+-(void)saveDataTofileWithtWithURL:(NSURL *)arg1 msg:(id)arg2 andResult:(id)result;
 
 @end
 

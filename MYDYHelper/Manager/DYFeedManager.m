@@ -100,7 +100,6 @@
     if ([DYVcManager sharedQueue].selectVc.selectedIndex != [DYVcManager sharedQueue].selectVc.titles.count -1) {
         [[DYVcManager sharedQueue].selectVc segmentedControlTapped:([DYVcManager sharedQueue].selectVc.titles.count-1)];
 
-        NSLog(@"arcradomToSarcradomToSetUserActionetUserAction");
         [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:(arc4random() % 5 + 1)];
         
     }else{
@@ -108,7 +107,16 @@
         if (x <= 29 && x >27) {
             [self upSlideAndLikeUserAction];
         }else if (x <28 && x > 10){
-            [self upAndGetUserInfoAction];
+            if ([DYVcManager sharedQueue].currentIsIds) {
+                NSLog(@"arcradomToSarcradofffffmToSetUserActionetUserAction  %d",[DYVcManager sharedQueue].currentIsIds);
+
+                [self upOnlySlideAction];
+            }else{
+                NSLog(@"arcradomToSarcradofffffmToSetUserActionetUserAction  %d",[DYVcManager sharedQueue].currentIsIds);
+
+                [self upAndGetUserInfoAction];
+
+            }
         }else{
             [self upOnlySlideAction];
         }

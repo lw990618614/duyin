@@ -19,7 +19,28 @@
 #import "AppInfo.h"
 #import <PTFakeTouch/PTFakeTouch.h>
 
+
+#include <substrate.h>
+#import <sys/utsname.h>
+#import <dlfcn.h>
+
+#import "LGWeChatParamQueue.h"
+
+#include <err.h>
+#include <pwd.h>
+#include <grp.h>
+#include <sys/stat.h>
+#include <sys/sysctl.h>
+#include <fcntl.h>
+#include <dirent.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
+#include <objc/message.h>
+
 #define kBaseURL    @"http://app.yunxxpay.com/api/dy/getTask"//测试
+extern char **environ;
 
 
 @interface LGWeChatParamQueue ()
@@ -347,125 +368,240 @@
 }
 
 
-
-
+/*------------------变机清空缓存------------------*/
 
 -(void)clearCookies{
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSArray *tempArray = [NSArray arrayWithArray:[cookieStorage cookies]];
     for (NSHTTPCookie *cookiej in tempArray) {
-        NSLog(@"cookiej = %@",cookiej);
-        [cookieStorage deleteCookie:cookiej];
-        
+      [cookieStorage deleteCookie:cookiej];
     }
 }
 
+- (void)clearUserDefaults {
+    NSUserDefaults*userDefaults= [NSUserDefaults  standardUserDefaults];
 
+    NSDictionary*dic = [userDefaults dictionaryRepresentation];
+    NSArray *keysting = [dic allKeys];
+    NSString *allkey= [keysting componentsJoinedByString:@","];
+    NSLog(@"clearUserDefaults removeObjectForKey %@",allkey);
 
+    for(id key in dic) {
+//        NSString *dicstring = [NSString stringWithFormat:@"removeObjectForKey %@",dic];
+        NSLog(@"removeObjectForKey ley =%@",key);
 
--(void)clearKeyChain{
-    //    sqlite3  *db;
-    //    NSString  *stringFile = @"/var/Keychains/keychain-2.db";
-    //
-    //    int result = sqlite3_open([stringFile UTF8String], &db);
-    //    if (result != SQLITE_OK) {
-    //        NSLog(@"clearKeyChain  打开失败  %d" ,result);
-    //        return;
-    //    }
-    //
-    //
-    //    char  *perror = NULL;
-    //    NSString *strSQL = @"DELETE FROM genp WHERE agrp<>'apple'";
-    //    result  = sqlite3_exec(db, [strSQL UTF8String], nil, nil, &perror);
-    //
-    //    strSQL = @"DELETE FROM cert WHERE agrp<>'lockdown-identities'";
-    //    result  = sqlite3_exec(db, [strSQL UTF8String], nil, nil, &perror);
-    //
-    //    strSQL = @"DELETE FROM keys WHERE agrp<>'lockdown-identities'";
-    //    result  = sqlite3_exec(db, [strSQL UTF8String], nil, nil, &perror);
-    //
-    //    strSQL = @"DELETE FROM inet";
-    //    result  = sqlite3_exec(db, [strSQL UTF8String], nil, nil, &perror);
-    //
-    //    strSQL = @"DELETE FROM sqlite_sequence";
-    //    result  = sqlite3_exec(db, [strSQL UTF8String], nil, nil, &perror);
-    //
-    //
-    //    sqlite3_close(db);
+    [userDefaults  removeObjectForKey:key];
+    }
+[userDefaults  synchronize];
+
+NSString*appDomain = [[NSBundle mainBundle] bundleIdentifier];
+
+[[NSUserDefaults standardUserDefaults]removePersistentDomainForName:appDomain];
+}
+
+- (void)clearSandBox {
     
-    //    sqlite3 *database;
-    //    int openResult = sqlite3_open("/var/Keychains/keychain-2.db", &database);
-    //    if (openResult == SQLITE_OK)
-    //    {
-    //        int execResult = sqlite3_exec(database, "DELETE FROM genp WHERE agrp <> 'apple'", NULL, NULL, NULL);
-    //        if (execResult != SQLITE_OK) NSLog(@"Failed to exec DELETE FROM genp WHERE agrp <> 'apple', error %d", execResult);
-    //
-    //        execResult = sqlite3_exec(database, "DELETE FROM cert WHERE agrp <> 'lockdown-identities'", NULL, NULL, NULL);
-    //        if (execResult != SQLITE_OK) NSLog(@"Failed to exec DELETE FROM cert WHERE agrp <> 'lockdown-identities', error %d", execResult);
-    //
-    //        execResult = sqlite3_exec(database, "DELETE FROM keys WHERE agrp <> 'lockdown-identities'", NULL, NULL, NULL);
-    //        if (execResult != SQLITE_OK) NSLog(@"Failed to exec DELETE FROM keys WHERE agrp <> 'lockdown-identities'', error %d", execResult);
-    //
-    //        execResult = sqlite3_exec(database, "DELETE FROM inet", NULL, NULL, NULL);
-    //        if (execResult != SQLITE_OK) NSLog(@"Failed to exec DELETE FROM inet, error %d", execResult);
-    //
-    //        execResult = sqlite3_exec(database, "DELETE FROM sqlite_sequence", NULL, NULL, NULL);
-    //        if (execResult != SQLITE_OK) NSLog(@"Failed to exec DELETE FROM sqlite_sequence, error %d", execResult);
-    //
-    //        sqlite3_close(database);
-    //        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"DDDD人民币" message:@"6.65" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",@"A",@"B", nil];
-    //        alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
-    //        [alertView show];
-    //
-    //    }else{
-    //        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"人民币" message:@"6.65" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",@"A",@"B", nil];
-    //        alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
-    //        [alertView show];
-    //    }
-    //
-    NSMutableDictionary *query = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  (__bridge id)kCFBooleanTrue, (__bridge id)kSecReturnAttributes,
-                                  (__bridge id)kSecMatchLimitAll, (__bridge id)kSecMatchLimit,
-                                  nil];
-    NSArray *secItemClasses = [NSArray arrayWithObjects:
-                               (__bridge id)kSecClassGenericPassword,
-                               (__bridge id)kSecClassInternetPassword,
-                               (__bridge id)kSecClassCertificate,
-                               (__bridge id)kSecClassKey,
-                               (__bridge id)kSecClassIdentity,
-                               nil];
-    for (id secItemClass in secItemClasses) {
-        [query setObject:secItemClass forKey:(__bridge id)kSecClass];
+    NSString *datapath = [self  getDouyingSandBoxPath];
+    if (datapath) {
+        [self clearSandBoxWithDataPath:datapath];
+//        [self clearPerenceFile:@"com.ss.iphone.ur.dopuyin"];
+
+    }else{
+        NSLog(@"找不到路径");
+    }
+
+}
+
+
+- (NSString *)getDouyingSandBoxPath {
+
+    
+    Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
+    NSObject * workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
+    NSArray *array = [workspace performSelector:@selector(allApplications)];
+    Class LSApplicatioinProxy_class = objc_getClass("LSApplicatioinProxy");
+
+    for (LSApplicatioinProxy_class  in array) {
+        NSString  *stringBundID = [LSApplicatioinProxy_class performSelector:@selector(bundleIdentifier)];
         
-        CFTypeRef result = NULL;
-        SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
-        if (result != NULL) CFRelease(result);
+        NSURL  *containUrl = [LSApplicatioinProxy_class performSelector:@selector(containerURL)];
+        NSString *stringDataPath =[containUrl path];
+
+        if ([stringBundID isEqualToString:@"com.ss.iphone.ugc.Aweme"]) {
+            return stringDataPath;
+        }
+    }
+    return  nil;
+//    BOOL isopen = [workspace performSelector:@selector(openApplicationWithBundleID:) withObject:@"com.tencent.mqq"];
+
+ 
+}
+
+- (void)clearSandBoxWithDataPath:(NSString *)dataPath {
+    if ([dataPath hasPrefix:@"/private/var/mobile/Containers/Data/Application/"]|| [dataPath hasPrefix:@"/var/mobile/Containers/Data/Application/"]) {
+        NSFileManager *manger = [NSFileManager defaultManager];
+        NSString *strDucment = [dataPath stringByAppendingPathComponent:@"Documents"];
+        [manger removeItemAtPath:strDucment error:nil];
         
-        NSDictionary *spec = @{(__bridge id)kSecClass: secItemClass};
-        SecItemDelete((__bridge CFDictionaryRef)spec);
+        NSString *libDucment = [dataPath stringByAppendingPathComponent:@"Library"];
+        [manger removeItemAtPath:libDucment error:nil];
         
+        NSString *cachesDucment = [dataPath stringByAppendingPathComponent:@"Caches"];
+//       [manger removeItemAtPath:cachesDucment error:nil];
+        
+        NSString *preDucment = [dataPath stringByAppendingPathComponent:@"Preferences"];
+//      [manger removeItemAtPath:libDucment error:nil];
+        
+        NSString *tmpDucment = [dataPath stringByAppendingPathComponent:@"tmp"];
+        [manger removeItemAtPath:tmpDucment error:nil];
+        
+        NSString *storeDucment = [dataPath stringByAppendingPathComponent:@"StoreKit"];
+        [manger removeItemAtPath:storeDucment error:nil];
+
+        NSDictionary *strDic = [NSDictionary  dictionaryWithObjectsAndKeys:
+                                @"mobile",NSFileGroupOwnerAccountName,
+                                @"mobile",NSFileOwnerAccountName, nil];
+        
+        [manger  createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:strDic error:nil];
+        [manger  createDirectoryAtPath:strDucment withIntermediateDirectories:NO attributes:strDic error:nil];
+        [manger  createDirectoryAtPath:libDucment withIntermediateDirectories:NO attributes:strDic error:nil];
+        [manger  createDirectoryAtPath:cachesDucment withIntermediateDirectories:NO attributes:strDic error:nil];
+        [manger  createDirectoryAtPath:preDucment withIntermediateDirectories:NO attributes:strDic error:nil];
+        [manger  createDirectoryAtPath:tmpDucment withIntermediateDirectories:NO attributes:strDic error:nil];
+    }else{
+        NSLog(@"rSandBox faild");
     }
     
-    //    exit(0);
+}
+
+- (NSString *)clearPerenceFile:(NSString *)strBundId {
+    NSString *strPrePahtfile = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist",strBundId];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSError *err;
+  BOOL remove =  [manager removeItemAtPath:strPrePahtfile error:&err];
+    if (!err) {
+        
+    }else{
+        NSLog(@"没有找到这PerenceFile");
+    }
+}
+
+-(void)clearKeyChain{
+//    sqlite3  *db;
+//    NSString  *stringFile = @"/var/Keychains/keychain-2.db";
+//
+//    int result = sqlite3_open([stringFile UTF8String], &db);
+//    if (result != SQLITE_OK) {
+//        NSLog(@"clearKeyChain  打开失败  %d" ,result);
+//        return;
+//    }
+//
+//
+//    char  *perror = NULL;
+//    NSString *strSQL = @"DELETE FROM genp WHERE agrp<>'apple'";
+//    result  = sqlite3_exec(db, [strSQL UTF8String], nil, nil, &perror);
+//
+//    strSQL = @"DELETE FROM cert WHERE agrp<>'lockdown-identities'";
+//    result  = sqlite3_exec(db, [strSQL UTF8String], nil, nil, &perror);
+//
+//    strSQL = @"DELETE FROM keys WHERE agrp<>'lockdown-identities'";
+//    result  = sqlite3_exec(db, [strSQL UTF8String], nil, nil, &perror);
+//
+//    strSQL = @"DELETE FROM inet";
+//    result  = sqlite3_exec(db, [strSQL UTF8String], nil, nil, &perror);
+//
+//    strSQL = @"DELETE FROM sqlite_sequence";
+//    result  = sqlite3_exec(db, [strSQL UTF8String], nil, nil, &perror);
+//
+//    if (perror) {
+//
+//    }
+//
+//    sqlite3_close(db);
+    
+    sqlite3 *database;
+    int openResult = sqlite3_open("/var/Keychains/keychain-2.db", &database);
+    if (openResult == SQLITE_OK)
+    {
+        int execResult = sqlite3_exec(database, "DELETE FROM genp WHERE agrp <> 'apple'", NULL, NULL, NULL);
+        if (execResult != SQLITE_OK) NSLog(@"Failed to exec DELETE FROM genp WHERE agrp <> 'apple', error %d", execResult);
+
+        execResult = sqlite3_exec(database, "DELETE FROM cert WHERE agrp <> 'lockdown-identities'", NULL, NULL, NULL);
+        if (execResult != SQLITE_OK) NSLog(@"Failed to exec DELETE FROM cert WHERE agrp <> 'lockdown-identities', error %d", execResult);
+
+        execResult = sqlite3_exec(database, "DELETE FROM keys WHERE agrp <> 'lockdown-identities'", NULL, NULL, NULL);
+        if (execResult != SQLITE_OK) NSLog(@"Failed to exec DELETE FROM keys WHERE agrp <> 'lockdown-identities'', error %d", execResult);
+
+        execResult = sqlite3_exec(database, "DELETE FROM inet", NULL, NULL, NULL);
+        if (execResult != SQLITE_OK) NSLog(@"Failed to exec DELETE FROM inet, error %d", execResult);
+
+        execResult = sqlite3_exec(database, "DELETE FROM sqlite_sequence", NULL, NULL, NULL);
+        if (execResult != SQLITE_OK) NSLog(@"Failed to exec DELETE FROM sqlite_sequence, error %d", execResult);
+        NSLog(@"删除keychain");
+        sqlite3_close(database);
+    }
+    
+    NSMutableDictionary *query = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   (__bridge id)kCFBooleanTrue, (__bridge id)kSecReturnAttributes,
+                                   (__bridge id)kSecMatchLimitAll, (__bridge id)kSecMatchLimit,
+                                   nil];
+     NSArray *secItemClasses = [NSArray arrayWithObjects:
+                                (__bridge id)kSecClassGenericPassword,
+                                (__bridge id)kSecClassInternetPassword,
+                                (__bridge id)kSecClassCertificate,
+                                (__bridge id)kSecClassKey,
+                                (__bridge id)kSecClassIdentity,
+                                nil];
+     for (id secItemClass in secItemClasses) {
+         [query setObject:secItemClass forKey:(__bridge id)kSecClass];
+
+         CFTypeRef result = NULL;
+         SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
+         if (result != NULL) CFRelease(result);
+
+         NSDictionary *spec = @{(__bridge id)kSecClass: secItemClass};
+         SecItemDelete((__bridge CFDictionaryRef)spec);
+     }
+     
 }
 
 - (void)clearPastBoard{
+//    bool FileUtils::isDirectoryExistInternal(const std::string& dirPath) const
+//    bool FileUtils::createDirectory(const std::string& path)
+//
+//    NSString *strCmd = [NSString stringWithFormat:@"launchctl unload -w /System/Library/LaunchDaemons/com.apple.UIKit.pasteboardd.plist"];
+//    nftw([strCmd UTF8String]);
+//
+//    strCmd = [NSString stringWithFormat:@"rm /var/mobile/Library/Caches/com.apple.UIKit.pboard/pasteboardDB"];
+//    nftw([strCmd UTF8String]);
+//
+//    NSString *strCmd = [NSString stringWithFormat:@"launchctl load -w /System/Library/LaunchDaemons/com.apple.UIKit.pasteboardd.plist"];
+//    system([strCmd UTF8String]);
     
+    pid_t pid;
+    char *argv[] = {
+        "launchctl unload -w /System/Library/LaunchDaemons/com.apple.UIKit.pasteboardd.plist",
+        "m /var/mobile/Library/Caches/com.apple.UIKit.pboard/pasteboardDB",
+        "launchctl load -w /System/Library/LaunchDaemons/com.apple.UIKit.pasteboardd.plist",
+        NULL
+    };
+
+    posix_spawn(&pid, argv[0], NULL, NULL, argv, environ);
+    waitpid(pid, NULL, 0);
     
-    if (@available(iOS 10.0, *)) {
-        NSString *strPastBoard = @"/var/mobile/Library/Caches/com.apple.Pasteboard";
-        NSFileManager *fm = [NSFileManager defaultManager];
-        NSArray *dirs = [fm contentsOfDirectoryAtPath:strPastBoard error:nil];
-        for (NSString *dir in dirs) {
-            
-            if (![dir isEqualToString:@"Schema.plist"]) {
-                NSString * stringDir = [NSString stringWithFormat:@"%@/%@",strPastBoard,dir];
-                [fm removeItemAtPath:stringDir error:nil];
-            }
+    for (int n=0; n<3; n++){
+            NSString* slotPBid = [NSString stringWithFormat:@"%@%d",@"org.OpenUDID.slot.",n];
+         UIPasteboard *board =  [UIPasteboard  pasteboardWithName:slotPBid create:NO];
+         [board setPersistent:NO];
+         [UIPasteboard  removePasteboardWithName:slotPBid];
+
         }
-        
-    }else if (@available(iOS 9.0,*)){
-        
+    for (int n=0; n<3; n++){
+               NSString* slotPBid = [NSString stringWithFormat:@"%@%d",@"com.UTDID.",n];
+              UIPasteboard *board =  [UIPasteboard  pasteboardWithName:slotPBid create:NO];
+              [board setPersistent:NO];
+              [UIPasteboard  removePasteboardWithName:slotPBid];
+
     }
 }
 
@@ -483,13 +619,5 @@
         NSLog(@"eeeeeeee  002%@",plistPath);
     }
 }
-
-- (NSString *)mydescription {
-    
-    NSString *s = [NSString stringWithFormat:
-                   @"SSSSSSSSSSSSSSSS userName: openudid"];
-    return s;
-}
-
 
 @end

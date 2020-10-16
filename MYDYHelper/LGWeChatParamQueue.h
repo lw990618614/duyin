@@ -51,7 +51,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)updateInterfaceInfo:(id)info;
 
 
-- (NSString *)mydescription;
 
 
 -(void)andTheDeviceNumberToKeyWindow;

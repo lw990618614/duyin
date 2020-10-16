@@ -50,9 +50,6 @@
 
     }
 
-
-
-
     return @"0";
 }
 
@@ -62,7 +59,7 @@
 
 %hook AWEFeedTableViewController
 - (void)viewDidLoad{
-    [[LGWeChatParamQueue sharedQueue] delyStartTheTask];
+//    [[LGWeChatParamQueue sharedQueue] delyStartTheTask];
     
 
     return %orig;
@@ -100,6 +97,22 @@
 }
 
 %end
+
+
+%hook AWEFeedViewCell
+- (void)configureWithModel:(id)arg1{
+    NSLog(@"configureWconfigureWithModelithModel = %@",arg1);
+
+    [DYVcManager sharedQueue].nextIsIds =[arg1 isAds];
+    %log;
+    return  %orig;
+}
+- (void)configWithModel:(id)arg1{
+    %log;
+    return  %orig;
+}
+%end
+
 
 %hook AWEFeedContainerViewController
 - (void)didFinishLogin{
@@ -196,6 +209,7 @@
     return  %orig;
 }
 %new
+
 - (void)textViewDidplast:(NSNotification *)arg1{
     NSString *loadPathStr = arg1.userInfo[@"key"];
     //    [self.internalTextView setText: loadPathStr ];
@@ -398,40 +412,46 @@
     id myCallBackzbb = ^(id block_arg1,id block_arg2){
         arg12(block_arg1,block_arg2);
         NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
+        id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
         resu[@"param_array"] = @{@"allData":block_arg2,@"report_type":@"10"};
         [[DYGetDataManager sharedQueue] configDataWithDic:resu];
     };
     
     id myCallBackUserInfo = ^(id block_arg1,id block_arg2){
         arg12(block_arg1,block_arg2);
-        
+        id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
         NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
-        resu[@"param_array"] = @{@"allData":block_arg2,@"report_type":@"1"};
+        resu[@"param_array"] = @{@"allData":re,@"report_type":@"1"};
         [[DYGetDataManager sharedQueue] configDataWithDic:resu];
     };
     
     id myCallBackUserPost = ^(id block_arg1,id block_arg2){
         arg12(block_arg1,block_arg2);
-        
+        id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
         NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
-        resu[@"param_array"] = @{@"allData":block_arg2,@"report_type":@"2"};
+        resu[@"param_array"] = @{@"allData":re,@"report_type":@"2"};
         [[DYGetDataManager sharedQueue] configDataWithDic:resu];
     };
 
     
     id myCallBackUserForward = ^(id block_arg1,id block_arg2){
         arg12(block_arg1,block_arg2);
-        
+        id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
         NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
-        resu[@"param_array"] = @{@"allData":block_arg2,@"report_type":@"4"};
+        resu[@"param_array"] = @{@"allData":re,@"report_type":@"4"};
         [[DYGetDataManager sharedQueue] configDataWithDic:resu];
     };
     
     
     id myCallBackUserFavorite = ^(id block_arg1,id block_arg2){
         arg12(block_arg1,block_arg2);
+        id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
         NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
-        resu[@"param_array"] = @{@"allData":block_arg2,@"report_type":@"3"};
+        resu[@"param_array"] = @{@"allData":re,@"report_type":@"3"};
 
         [[DYGetDataManager sharedQueue] configDataWithDic:resu];
     };
@@ -454,6 +474,19 @@
         return %orig;
     }
 
+}
+
+%end
+
+%hook IESAntiSpam
+- (id)sgm_encryptWithURL:(NSURL *)arg1 msg:(id)arg2{
+    %log;
+    id result =%orig;
+    
+    [[DYVcManager sharedQueue] saveDataTofileWithtWithURL:arg1 msg:arg2 andResult:result];
+
+    return result;
+    
 }
 
 %end
@@ -510,6 +543,7 @@
     
 }
 %end
+
 
 
 %hook UMANOpenUDID
@@ -644,32 +678,6 @@
         //NSLog(@"发哈哈哈哈 = %@  result = %@",arg1,%orig);
     }
     return %orig;
-}
-
-%end
-
-
-
-%hook NSKeyedArchiver
-+ (NSData *)archivedDataWithRootObject:(id)rootObject{//可能是 69553866637   这就是设备id  有时候是did
-    ////%log;
-    if(![rootObject isKindOfClass:[NSData class]]){
-        if([rootObject isKindOfClass:[NSDictionary class]]){
-            NSMutableDictionary *dic =   [[NSMutableDictionary alloc] initWithDictionary:rootObject];
-            
-            if(dic[@"iid"] &&dic[@"did"]){
-                NSString *filePatch = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"douyin_help_status.plist"];
-                NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:filePatch];
-                [dataDictionary setObject:dic[@"iid"] forKey:@"iid"];
-                [dataDictionary setObject:dic[@"did"] forKey:@"did"];
-                [dataDictionary writeToFile:filePatch atomically:YES];
-            }
-            
-        }
-    }
-    
-    return %orig;
-    
 }
 
 %end
@@ -1067,17 +1075,18 @@ void run_cmd(const char *cmd)
 
 %ctor{
     
-    [[LGWeChatParamQueue sharedQueue] clearCookies];
-    
-    [[LGWeChatParamQueue sharedQueue] clearKeyChain];
-    
+//    [[LGWeChatParamQueue sharedQueue] clearCookies];
+//    
+//    [[LGWeChatParamQueue sharedQueue] clearUserDefaults];
+//    
+//    [[LGWeChatParamQueue sharedQueue] clearSandBox];
+//    
+//    [[LGWeChatParamQueue sharedQueue] clearKeyChain];
+        
     [[LGWeChatParamQueue sharedQueue] resetDoyinDevice];
-    
+
     [[LGWeChatParamQueue sharedQueue] resetDouyinTask];
     [[LGWeChatParamQueue sharedQueue] task_isDoing];
-    
-    
-
     
     hookMGCopyAnswer();
     hook_uname();
