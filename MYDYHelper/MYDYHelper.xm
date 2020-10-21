@@ -17,7 +17,7 @@
 
 /* ---------------        这是任务hook 代码           ----------    */
 
-
+int a =0;
 %hook AppDelegate
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [[LGWeChatParamQueue sharedQueue] task_isDoing];
@@ -101,7 +101,6 @@
 
 %hook AWEFeedViewCell
 - (void)configureWithModel:(id)arg1{
-    NSLog(@"configureWconfigureWithModelithModel = %@",arg1);
 
     [DYVcManager sharedQueue].nextIsIds =[arg1 isAds];
     %log;
@@ -405,74 +404,166 @@
 %hook TTNetworkManagerChromium
 
 - (id)requestForJSONWithURL_:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(_Bool)arg4 headerField:(id)arg5 requestSerializer:(Class)arg6 responseSerializer:(Class)arg7 autoResume:(_Bool)arg8 verifyRequest:(_Bool)arg9 isCustomizedCookie:(_Bool)arg10 callback:(id)arg11 callbackWithResponse:(void(^)(id,id))arg12 dispatch_queue:(id)arg13{
+        NSLog(@"requestForJSONWithURL_  orig = %@  %@ " ,arg1,arg2);
 
-    NSLog(@"GGGGGGGGGG %@ \n %@",arg1,arg2);
-    NSString *url = arg1;
+        NSString *url = arg1;
 
-    id myCallBackzbb = ^(id block_arg1,id block_arg2){
-        arg12(block_arg1,block_arg2);
-        NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
-        id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+        id myCallBackzbb = ^(id block_arg1,id block_arg2){
+            arg12(block_arg1,block_arg2);
+            NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
+            id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
 
-        resu[@"param_array"] = @{@"allData":block_arg2,@"report_type":@"10"};
-        [[DYGetDataManager sharedQueue] configDataWithDic:resu];
-    };
+            resu[@"param_array"] = @{@"allData":re,@"report_type":@"10"};
+            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+        };
+
+        id myCallBackUserInfo = ^(id block_arg1,id block_arg2){
+            arg12(block_arg1,block_arg2);
+            NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
+            id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
+            resu[@"param_array"] = @{@"allData":re,@"report_type":@"1"};
+            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+            NSLog(@"GGGGGGfffGGGG %@ \n %@",arg1,arg2);
+        };
+
+        id myCallBackUserPost = ^(id block_arg1,id block_arg2){
+            arg12(block_arg1,block_arg2);
+            NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
+            id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
+            resu[@"param_array"] = @{@"allData":re,@"report_type":@"2"};
+            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+            
+            NSLog(@"requestForfffdfsdfJSONWithURL_  orig = %@  %d " ,arg1,(a +1));
+
+        };
+
+        id myCallBackUserForward = ^(id block_arg1,id block_arg2){
+            arg12(block_arg1,block_arg2);
+            NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
+            id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
+            resu[@"param_array"] = @{@"allData":re,@"report_type":@"4"};
+            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+        };
+
+        //直播间
+        id myCallBackUserFavorite = ^(id block_arg1,id block_arg2){
+            arg12(block_arg1,block_arg2);
+            NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
+            id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
+            resu[@"param_array"] = @{@"allData":re,@"report_type":@"3"};
+            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+        };
+
+        
+        //直播间相关
+        id myCallBackbagnList = ^(id block_arg1,id block_arg2){
+            arg12(block_arg1,block_arg2);
+            NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
+            id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
+            resu[@"param_array"] = @{@"allData":re,@"report_type":@"5"};
+
+            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+        };
+
+
+        id myCallBackProductList = ^(id block_arg1,id block_arg2){
+            arg12(block_arg1,block_arg2);
+            NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
+            id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
+            resu[@"param_array"] = @{@"allData":re,@"report_type":@"6"};
+
+            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+        };
+
+        id myCallBackProductInfo = ^(id block_arg1,id block_arg2){
+            arg12(block_arg1,block_arg2);
+            NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
+            id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
+            resu[@"param_array"] = @{@"allData":re,@"report_type":@"7"};
+
+            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+        };
+
+        id myCallBackOnlineInfo = ^(id block_arg1,id block_arg2){
+            arg12(block_arg1,block_arg2);
+            NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
+            id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+
+            resu[@"param_array"] = @{@"allData":re,@"report_type":@"8"};
+
+            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+        };
+
+
+
+
+
+
+        if([url containsString :@"https://webcast.amemv.com/webcast/ranklist/hot/"]){
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackzbb,arg13);
+        }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/user/profile/other/"]){
+
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserInfo,arg13);
+        }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/forward/list/"]){
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserForward,arg13);
+        }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/aweme/post/"]){
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserPost,arg13);
+        }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/aweme/favorite/"]){
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserFavorite,arg13);
+        }else if([url containsString :@"https://webcast.amemv.com/webcast/user/"]){//某一个用户弹框
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackbagnList,arg13);
+        }else if([url containsString :@"https://webcast.amemv.com/webcast/ranklist/room"]){//直播间礼物排行榜
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackbagnList,arg13);
+        }else if([url containsString :@"https://mon.snssdk.com/monitor/collect"]){//顶部在线用户
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackOnlineInfo,arg13);
+    //        return %orig;
+
+        }else if([url containsString :@"    https://lianmengapi.snssdk.com/live/promotions"]){//商品列表
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackProductList,arg13);
+        }else if([url containsString :@"    https://aweme.snssdk.com/aweme/v2/shop/promotion/dynamic/info"]){//商品小店详情
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackProductInfo,arg13);
+        }else{
+            return %orig;
+        }
+
+
+
+
     
-    id myCallBackUserInfo = ^(id block_arg1,id block_arg2){
-        arg12(block_arg1,block_arg2);
-        id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
-        NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
-        resu[@"param_array"] = @{@"allData":re,@"report_type":@"1"};
-        [[DYGetDataManager sharedQueue] configDataWithDic:resu];
-    };
-    
-    id myCallBackUserPost = ^(id block_arg1,id block_arg2){
-        arg12(block_arg1,block_arg2);
-        id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+        if([url containsString :@"https://webcast.amemv.com/webcast/ranklist/hot/"]){
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackzbb,arg13);
+        }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/user/profile/other/"]){
 
-        NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
-        resu[@"param_array"] = @{@"allData":re,@"report_type":@"2"};
-        [[DYGetDataManager sharedQueue] configDataWithDic:resu];
-    };
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserInfo,arg13);
+        }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/forward/list/"]){
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserForward,arg13);
+        }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/aweme/post/"]){
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserPost,arg13);
+        }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/aweme/favorite/"]){
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserFavorite,arg13);
+        }else if([url containsString :@"https://webcast.amemv.com/webcast/user/"]){//某一个用户弹框
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackbagnList,arg13);
+        }else if([url containsString :@"https://webcast.amemv.com/webcast/ranklist/room"]){//直播间礼物排行榜
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackbagnList,arg13);
+        }else if([url containsString :@"https://mon.snssdk.com/monitor/collect"]){//顶部在线用户
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackOnlineInfo,arg13);
+    //        return %orig;
 
-    
-    id myCallBackUserForward = ^(id block_arg1,id block_arg2){
-        arg12(block_arg1,block_arg2);
-        id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+        }else if([url containsString :@"    https://lianmengapi.snssdk.com/live/promotions"]){//商品列表
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackProductList,arg13);
+        }else if([url containsString :@"    https://aweme.snssdk.com/aweme/v2/shop/promotion/dynamic/info"]){//商品小店详情
+            return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackProductInfo,arg13);
+        }else{
+            return %orig;
+        }
 
-        NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
-        resu[@"param_array"] = @{@"allData":re,@"report_type":@"4"};
-        [[DYGetDataManager sharedQueue] configDataWithDic:resu];
-    };
-    
-    
-    id myCallBackUserFavorite = ^(id block_arg1,id block_arg2){
-        arg12(block_arg1,block_arg2);
-        id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
-
-        NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
-        resu[@"param_array"] = @{@"allData":re,@"report_type":@"3"};
-
-        [[DYGetDataManager sharedQueue] configDataWithDic:resu];
-    };
-
-
-
-    
-//        if([url isEqualToString :@"https://aweme.snssdk.com/aweme/v1/forward/list/"]||[url isEqualToString :@"https://aweme.snssdk.com/aweme/v1/user/profile/other/"]||[url isEqualToString :@"https://aweme.snssdk.com/aweme/v1/aweme/post/"]||[url isEqualToString :@"https://aweme.snssdk.com/aweme/v1/aweme/favorite/"]||[url isEqualToString :@"https://aweme.snssdk.com/aweme/v1/promotion/user/promotion/list/"]||[url containsString :@"https://mon.snssdk.com/monitor/collect/"]){
-    if([url containsString :@"https://webcast.amemv.com/webcast/ranklist/hot/"]){
-        return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackzbb,arg13);
-    }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/user/profile/other/"]){
-        return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserInfo,arg13);
-    }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/forward/list/"]){
-        return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserForward,arg13);
-    }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/aweme/post/"]){
-        return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserPost,arg13);
-    }else if([url containsString :@"https://aweme.snssdk.com/aweme/v1/aweme/favorite/"]){
-        return  %orig(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,myCallBackUserFavorite,arg13);
-    }else{
-        return %orig;
-    }
 
 }
 
