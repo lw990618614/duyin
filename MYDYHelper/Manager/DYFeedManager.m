@@ -62,6 +62,7 @@
             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
             //      [NSThread sleepForTimeInterval:0.3];
             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
+            
         });
     }
     
@@ -104,22 +105,30 @@
         
     }else{
         int x = arc4random() % 30;
-        if (x <= 29 && x >27) {
-            [self upSlideAndLikeUserAction];
-        }else if (x <28 && x > 10){
+//        if (x <= 29 && x >27) {
+//            [self upSlideAndLikeUserAction];
+//        }else if (x <28 && x > 10){
+//            if ([DYVcManager sharedQueue].currentIsIds) {
+//
+//                [self upOnlySlideAction];
+//            }else{
+//                [self upAndGetUserInfoAction];
+//            }
+//        }else{
+//            [self upOnlySlideAction];
+//        }
+        
+       if (x > 7){
             if ([DYVcManager sharedQueue].currentIsIds) {
-                NSLog(@"arcradomToSarcradofffffmToSetUserActionetUserAction  %d",[DYVcManager sharedQueue].currentIsIds);
 
                 [self upOnlySlideAction];
             }else{
-                NSLog(@"arcradomToSarcradofffffmToSetUserActionetUserAction  %d",[DYVcManager sharedQueue].currentIsIds);
-
                 [self upAndGetUserInfoAction];
-
             }
         }else{
             [self upOnlySlideAction];
         }
+
 
     }
 
@@ -127,7 +136,7 @@
 }
 
 -(void)upOnlySlideAction{
-    int arcradom =  12 + (arc4random() % 5);
+    int arcradom =  6 + (arc4random() % 5);
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradom * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         UIViewController *vc = [self getCurrentVC];

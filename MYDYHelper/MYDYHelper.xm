@@ -20,7 +20,10 @@
 int a =0;
 %hook AppDelegate
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[LGWeChatParamQueue sharedQueue] task_isDoing];
+//    [[LGWeChatParamQueue sharedQueue] task_isDoing];
+    [[LGWeChatParamQueue sharedQueue] delyStartTheTask];
+    [[UIApplication sharedApplication] setIdleTimerDisabled: YES];
+
     return %orig;
 }
 
@@ -59,7 +62,6 @@ int a =0;
 
 %hook AWEFeedTableViewController
 - (void)viewDidLoad{
-//    [[LGWeChatParamQueue sharedQueue] delyStartTheTask];
     
 
     return %orig;
@@ -72,7 +74,7 @@ int a =0;
 %hook AWECommentListViewController
 - (void)viewDidLoad{
     %log;
-    [[LGWeChatParamQueue sharedQueue] delaybecomeFirstRespond];
+//    [[LGWeChatParamQueue sharedQueue] delaybecomeFirstRespond];
     
     return  %orig;
 }
