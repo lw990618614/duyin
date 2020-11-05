@@ -33,6 +33,52 @@ int a =0;
     return re;
 }
 
+
+
+%end
+
+
+%hook AWEFeedTableViewController
+- (void)viewDidLoad{
+    
+
+    return %orig;
+}
+
+
+
+%end
+
+
+%hook AWECommentListViewController
+- (void)viewDidLoad{
+    %log;
+//    [[LGWeChatParamQueue sharedQueue] delaybecomeFirstRespond];
+    
+    return  %orig;
+}
+
+
+%end
+
+
+%hook AWEFeedSegmentedControl
+
+- (id)initWithTitles:(id)arg1{
+    id re = %orig;
+//    [DYVcManager sharedQueue].selectVc = re;
+    return  re;
+
+}
+
+-(id)init{
+    id re = %orig;
+//    [DYVcManager sharedQueue].selectVc = re;
+    return  re;
+
+}
+
+
 %new
 - (NSString *)compareCurrentVc:(UIViewController *)vc{
     
@@ -56,30 +102,7 @@ int a =0;
     return @"0";
 }
 
-
 %end
-
-
-%hook AWEFeedTableViewController
-- (void)viewDidLoad{
-    
-
-    return %orig;
-}
-
-
-%end
-
-
-%hook AWECommentListViewController
-- (void)viewDidLoad{
-    %log;
-//    [[LGWeChatParamQueue sharedQueue] delaybecomeFirstRespond];
-    
-    return  %orig;
-}
-%end
-
 
 %hook NHAccountManager
 - (void)handleLoginSuccess:(unsigned long long)arg1 verificationInfo:(id)arg2 params:(id)arg3 completion:(id)arg4{
@@ -100,6 +123,22 @@ int a =0;
 
 %end
 
+%hook UIApplication
+- (BOOL)canOpenURL:(NSURL *)url {
+    NSLog(@"canOpenURLcanOpenURLcanOpenURL");
+
+    return  NO;
+
+}
+
+%end
+
+
+%hook SKStoreProductViewController
+-(id)init{
+    return nil;
+}
+%end
 
 %hook AWEFeedViewCell
 - (void)configureWithModel:(id)arg1{

@@ -53,7 +53,7 @@
 //#define kAddressHost @"192.168.199.112"
 //#define kAddressPort @"61235"
 
-#define kAddressHost @"192.168.199.28"
+#define kAddressHost @"106.8.14.9"
 #define kAddressPort @"61239"
 #endif
 

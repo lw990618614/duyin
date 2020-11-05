@@ -337,6 +337,7 @@ typedef void(^Block)();
 @property(nonatomic) long long selectedIndex; // @synthesize selectedIndex=_selectedIndex;
 @property(retain, nonatomic) NSArray *titles; // @synthesize titles=_titles;
 - (void)segmentedControlTapped:(long long)arg1;
+- (NSString *)compareCurrentVc:(UIViewController *)vc;
 
 @end
 
@@ -358,6 +359,11 @@ typedef void(^Block)();
 
 @end
 
+
+@interface AWEFeedTableViewController
+- (NSString *)compareCurrentVc:(UIViewController *)vc;
+
+@end
 
 
 

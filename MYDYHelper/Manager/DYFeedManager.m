@@ -118,19 +118,33 @@
 //            [self upOnlySlideAction];
 //        }
         
-       if (x > 7){
-            if ([DYVcManager sharedQueue].currentIsIds) {
+         UIViewController *vc = [self getCurrentVC];
+        //        [[DYTaskManager sharedQueue] hasLogined];
 
-                [self upOnlySlideAction];
+        NSString  *re =   [[DYVcManager sharedQueue].selectVc compareCurrentVc:vc];
+        NSLog(@"UIViewControllerUIViewController = %@ class %@  result = %@",vc,[vc class],re);
+
+         if (![re isEqualToString:@"4"]) {
+                UINavigationController *nav =(UINavigationController*)[vc navigationController];
+                [nav popViewControllerAnimated:YES];
+                [nav dismissViewControllerAnimated:YES completion:nil];
+                [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:(arc4random() % 5 + 1)];
+
             }else{
-                [self upAndGetUserInfoAction];
+                if (x > 1){
+                    if ([DYVcManager sharedQueue].currentIsIds) {
+                        
+                        [self upOnlySlideAction];
+                    }else{
+                        [self upAndGetUserInfoAction];
+                    }
+                }else{
+                    [self upOnlySlideAction];
+                }
             }
-        }else{
-            [self upOnlySlideAction];
         }
 
 
-    }
 
     
 }
@@ -211,10 +225,10 @@
         int locationX =100 +  arcradomX;
         int locationY =200 +  arcradomY;
         NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
-        [NSThread sleepForTimeInterval:0.2];
+        [NSThread sleepForTimeInterval:0.1];
         
         [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX + 200, locationY) withTouchPhase:(UITouchPhaseMoved)];
-        [NSThread sleepForTimeInterval:0.2];
+        [NSThread sleepForTimeInterval:0.1];
         [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX + 200, locationY) withTouchPhase:(UITouchPhaseEnded)];
         [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:2];
         
