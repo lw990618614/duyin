@@ -13,8 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) AWEFeedSegmentedControl *selectVc;
 @property (nonatomic, strong) AWEIMLoginManager *imloginManager;
 
-@property (nonatomic, assign) BOOL currentIsIds;
-@property (nonatomic, assign) BOOL nextIsIds;
+@property (nonatomic, strong) id data;
 
 
 

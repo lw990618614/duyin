@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)letChupengStarToWork;
 +(void)TaskDidFinishWithError:(NSString *)errorNumber;
 +(UIWindow *)topLevelWindowGet;
-+(void)setTheTaskStatus;
+//+(void)setTheTaskStatus;
 
 
 @end

@@ -17,30 +17,57 @@
 
 /* ---------------        这是任务hook 代码           ----------    */
 
+
 int a =0;
 %hook AppDelegate
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 //    [[LGWeChatParamQueue sharedQueue] task_isDoing];
-    [[LGWeChatParamQueue sharedQueue] delyStartTheTask];
+//    [[LGWeChatParamQueue sharedQueue] delyStartTheTask];
     [[UIApplication sharedApplication] setIdleTimerDisabled: YES];
 
     return %orig;
 }
 
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];//开启后台任务
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        //通过applicationIdentifier id。判断是否安装某个APP
+         [[DYFeedManager sharedQueue] feedTaskDidFinsh];
+        
+    });
+
+    
+    NSLog(@"AAAAAAAAAAAA applicationDidEnterBackground");
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+    NSLog(@"AAAAAAAAAAAA  applicationWillTerminate");
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        //通过applicationIdentifier id。判断是否安装某个APP
+//        
+//    });
+    
+    [[DYFeedManager sharedQueue] feedTaskDidFinsh];
+
+}
+
 %new
+
 - (BOOL)getUserLogined{
     BOOL re =[[%c(AWELanguageSelectionPopupManager) sharedInstance] userLogined];
     return re;
 }
-
-
-
 %end
-
 
 %hook AWEFeedTableViewController
 - (void)viewDidLoad{
     
+    [[LGWeChatParamQueue sharedQueue] delyStartTheTask];
 
     return %orig;
 }
@@ -48,6 +75,17 @@ int a =0;
 
 
 %end
+
+%hook AWESearchPlaceholderMultiContentViewController
+
+- (void)slidingViewController:(id)arg1 didSelectIndex:(long long)arg2 transitionType:(long long)arg3{
+    NSLog(@"slidingVislidingViewControllerewController %@,%ld, %ld",arg1,arg2,arg3);
+
+    return %orig;
+
+}
+%end
+
 
 
 %hook AWECommentListViewController
@@ -123,15 +161,15 @@ int a =0;
 
 %end
 
-%hook UIApplication
-- (BOOL)canOpenURL:(NSURL *)url {
-    NSLog(@"canOpenURLcanOpenURLcanOpenURL");
-
-    return  NO;
-
-}
-
-%end
+//%hook UIApplication
+//- (BOOL)canOpenURL:(NSURL *)url {
+//    NSLog(@"canOpenURLcanOpenURLcanOpenURL");
+//
+//    return  NO;
+//
+//}
+//
+//%end
 
 
 %hook SKStoreProductViewController
@@ -140,10 +178,27 @@ int a =0;
 }
 %end
 
+
+%hook UIAlertView
+-(id)init{
+    return nil;
+}
+%end
+
+
+%hook UIAlertController
+-(id)init{
+    return nil;
+}
+%end
+
+
+
+
 %hook AWEFeedViewCell
 - (void)configureWithModel:(id)arg1{
 
-    [DYVcManager sharedQueue].nextIsIds =[arg1 isAds];
+    [DYVcManager sharedQueue].data =arg1;
     %log;
     return  %orig;
 }
@@ -455,7 +510,7 @@ int a =0;
             id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
 
             resu[@"param_array"] = @{@"allData":re,@"report_type":@"10"};
-            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+//            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
         };
 
         id myCallBackUserInfo = ^(id block_arg1,id block_arg2){
@@ -486,7 +541,7 @@ int a =0;
             id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
 
             resu[@"param_array"] = @{@"allData":re,@"report_type":@"4"};
-            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+//            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
         };
 
         //直播间
@@ -496,7 +551,7 @@ int a =0;
             id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
 
             resu[@"param_array"] = @{@"allData":re,@"report_type":@"3"};
-            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+//            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
         };
 
         
@@ -508,7 +563,7 @@ int a =0;
 
             resu[@"param_array"] = @{@"allData":re,@"report_type":@"5"};
 
-            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+//            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
         };
 
 
@@ -519,7 +574,7 @@ int a =0;
 
             resu[@"param_array"] = @{@"allData":re,@"report_type":@"6"};
 
-            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+//            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
         };
 
         id myCallBackProductInfo = ^(id block_arg1,id block_arg2){
@@ -529,7 +584,7 @@ int a =0;
 
             resu[@"param_array"] = @{@"allData":re,@"report_type":@"7"};
 
-            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+//            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
         };
 
         id myCallBackOnlineInfo = ^(id block_arg1,id block_arg2){
@@ -539,7 +594,7 @@ int a =0;
 
             resu[@"param_array"] = @{@"allData":re,@"report_type":@"8"};
 
-            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+//            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
         };
 
 
@@ -615,7 +670,7 @@ int a =0;
     %log;
     id result =%orig;
     
-    [[DYVcManager sharedQueue] saveDataTofileWithtWithURL:arg1 msg:arg2 andResult:result];
+//    [[DYVcManager sharedQueue] saveDataTofileWithtWithURL:arg1 msg:arg2 andResult:result];
 
     return result;
     
@@ -1213,16 +1268,16 @@ void run_cmd(const char *cmd)
 //    
 //    [[LGWeChatParamQueue sharedQueue] clearSandBox];
 //    
-//    [[LGWeChatParamQueue sharedQueue] clearKeyChain];
+    [[LGWeChatParamQueue sharedQueue] clearKeyChain];
         
     [[LGWeChatParamQueue sharedQueue] resetDoyinDevice];
 
-    [[LGWeChatParamQueue sharedQueue] resetDouyinTask];
+//    [[LGWeChatParamQueue sharedQueue] resetDouyinTask];
     [[LGWeChatParamQueue sharedQueue] task_isDoing];
-    
-    hookMGCopyAnswer();
-    hook_uname();
-    hookLocations();
+//
+//    hookMGCopyAnswer();
+//    hook_uname();
+//    hookLocations();
     //    hookIPhoneVPN();
     
 }

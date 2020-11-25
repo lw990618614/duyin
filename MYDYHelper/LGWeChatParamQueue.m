@@ -282,6 +282,7 @@ extern char **environ;
         NSLog(@"failure--%@",error);
     }];
     
+    
 }
 
 - (void)delyStartTheTask{
@@ -298,46 +299,47 @@ extern char **environ;
         //
 //        [[SocketManager sharedQueue] connectAction];
 
-        DYTaskModel *model = [DYTaskManager sharedQueue].model;
-        NSString *task_id = model.task_id;
-        if(task_id.intValue == 10001){
-            
-        }else if(task_id.intValue == 20001){
-            
-        }else if(task_id.intValue == 30001){
-            NSString *plistPath = [kUserFileDeviceAndTaskPath stringByAppendingPathComponent:kTaskPlist];
-               NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-               NSString *loginStep =  dataDictionary[@"step"];
-            if (loginStep.intValue == 0) {
-                NSLog(@"DYLoginManager  00 ");
-                [[DYLoginManager sharedQueue] p_timerAction];
-            }else if (loginStep.intValue == 1){
-                NSLog(@"DYLoginManager  11 ");
-                [[DYLoginManager sharedQueue] loginStepTwo];
-            }else if (loginStep.intValue == 2){
-                NSLog(@"DYLoginManager  22 ");
-                [[DYLoginManager sharedQueue] loginStepThree];
-            }
-
-        }else if(task_id.intValue == 40001){
-            [[DYFollowManager sharedQueue] searchTheTargetUserWithDouyinID:model.foreign_id];
-        }else if(task_id.intValue == 50001){
-            
-        }else if(task_id.intValue == 60001){
-            
-        }else if(task_id.intValue == 70001){
-            [[DYFeedManager sharedQueue] arcradomToSetUserAction];
-            [DYFeedManager sharedQueue].finishTime = model.task_time.intValue *60;
-        }else if(task_id.intValue == 80001){
-            
-        }else if(task_id.intValue == 90001){
-            
-        }
-        
-        if (!model) {
-            [[DYFeedManager sharedQueue] arcradomToSetUserAction];
-        }
-
+//        DYTaskModel *model = [DYTaskManager sharedQueue].model;
+//        NSString *task_id = model.task_id;
+//        if(task_id.intValue == 10001){
+//
+//        }else if(task_id.intValue == 20001){
+//
+//        }else if(task_id.intValue == 30001){
+//            NSString *plistPath = [kUserFileDeviceAndTaskPath stringByAppendingPathComponent:kTaskPlist];
+//               NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+//               NSString *loginStep =  dataDictionary[@"step"];
+//            if (loginStep.intValue == 0) {
+//                NSLog(@"DYLoginManager  00 ");
+//                [[DYLoginManager sharedQueue] p_timerAction];
+//            }else if (loginStep.intValue == 1){
+//                NSLog(@"DYLoginManager  11 ");
+//                [[DYLoginManager sharedQueue] loginStepTwo];
+//            }else if (loginStep.intValue == 2){
+//                NSLog(@"DYLoginManager  22 ");
+//                [[DYLoginManager sharedQueue] loginStepThree];
+//            }
+//
+//        }else if(task_id.intValue == 40001){
+//            [[DYFollowManager sharedQueue] searchTheTargetUserWithDouyinID:model.foreign_id];
+//        }else if(task_id.intValue == 50001){
+//
+//        }else if(task_id.intValue == 60001){
+//
+//        }else if(task_id.intValue == 70001){
+//            [[DYFeedManager sharedQueue] arcradomToSetUserAction];
+//            [DYFeedManager sharedQueue].finishTime = model.task_time.intValue *60;
+//        }else if(task_id.intValue == 80001){
+//
+//        }else if(task_id.intValue == 90001){
+//
+//        }
+//
+//        if (!model) {
+//            [[DYFeedManager sharedQueue] arcradomToSetUserAction];
+//        }
+[[DYFeedManager sharedQueue] arcradomToSetUserAction];
+        [DYFeedManager sharedQueue].finishTime = 60*60;
     });
     
 }

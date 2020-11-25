@@ -35,40 +35,40 @@
     if (errorNumber.intValue) {
         [dataDictionary setObject:errorNumber forKey:@"TaskResultError"];
     }
-    BOOL  resut =   [dataDictionary writeToFile:plistPath atomically:YES];
-      NSLog(@"TaskDidFinishWithError %d",resut);
-      Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
-      
-      NSObject * workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
-      [workspace performSelector:@selector(openApplicationWithBundleID:) withObject:@"com.lby.AngelClient"];
+//    BOOL  resut =   [dataDictionary writeToFile:plistPath atomically:YES];
+//      NSLog(@"TaskDidFinishWithError %d",resut);
+//      Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
+//
+//      NSObject * workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
+//      [workspace performSelector:@selector(openApplicationWithBundleID:) withObject:@"com.lby.AngelClient"];
  
-    [self progranExit];
+    [self performSelector:@selector(progranExit) withObject:nil afterDelay:3];
 }
 
 +(void)progranExit{
-    
+    exit(1);
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-
-    [UIView animateWithDuration:1.0f animations:^{
-
-    window.alpha = 0;
-
-     window.frame = CGRectMake(0, window.bounds.size.width, 0, 0);
-
-    } completion:^(BOOL finished) {
-        
-        abort();
-//     exit(1);
-
-    }];
+//
+//    [UIView animateWithDuration:1.0f animations:^{
+//
+//    window.alpha = 0;
+//
+//     window.frame = CGRectMake(0, window.bounds.size.width, 0, 0);
+//
+//    } completion:^(BOOL finished) {
+//
+//        abort();
+////     exit(1);
+//
+//    }];
 }
 
--(void)setTheTaskStatus{
-    NSString *plistPath = [kUserFileDeviceAndTaskPath stringByAppendingPathComponent:kTaskPlist];
-    NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    [dataDictionary setObject:@"1" forKey:@"Task_api_status"];
-    [dataDictionary writeToFile:plistPath atomically:YES];
-}
+//-(void)setTheTaskStatus{
+//    NSString *plistPath = [kUserFileDeviceAndTaskPath stringByAppendingPathComponent:kTaskPlist];
+//    NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+//    [dataDictionary setObject:@"1" forKey:@"Task_api_status"];
+//    [dataDictionary writeToFile:plistPath atomically:YES];
+//}
 
 +(UIWindow *)topLevelWindowGet{
     

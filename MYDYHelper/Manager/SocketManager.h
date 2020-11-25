@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)connectAction;
 - (void)sendMessageAction:(id)sender;
 - (void)longConnectToSocket;
+- (void)saveTimeDataTopPlist;
+
 
 @end
 

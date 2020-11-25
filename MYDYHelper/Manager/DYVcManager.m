@@ -18,11 +18,6 @@
     return queue;
 }
 
--(void)setNextIsIds:(BOOL)nextIsIds{
-    self.currentIsIds =_nextIsIds;
-    _nextIsIds = nextIsIds;
-    
-}
 
 -(void)saveDataTofileWithtWithURL:(NSURL *)arg1 msg:(id)arg2 andResult:(id)result{
     NSString *filePatch = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"douyin_help_status.plist"];

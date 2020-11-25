@@ -25,10 +25,12 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         queue = [[SocketManager alloc] init];
+        [queue saveTimeDataTopPlist];
         NSString *documentsPath = kTaskFilePath;
         NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"MY_Identiferi.plist"];
         BOOL isExit  = [WHCFileManager isExistsAtPath:plistPath];
         if (!isExit) {
+            
         }else{
             NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
             if (dataDictionary[@"device_indentifer"]) {
@@ -240,6 +242,7 @@
 //    if (![[TaskManager sharedQueue] doingTask]) {
 //        [[TaskManager sharedQueue] taskResultFromDouYinAndStartNewTask];
 //    }
+    
 }
 
 //注意：如果是三字节utf-8，第二字节错误，则先替换第一字节内容(认为此字节误码为三字节utf8的头)，然后判断剩下的两个字节是否非法；
@@ -396,6 +399,8 @@
 //    }
     // 读取到服务器数据值后,能再次读取
     [self.clientSocket readDataWithTimeout:- 1 tag:0];
+    
+    [self saveTimeDataTopPlist];
 }
 
 
@@ -436,17 +441,21 @@
 }
 
 
-//判断缓存是否还有任务
--(void)saveDeviceTypeTopPlist{
+//保存当前时间段
+-(void)saveTimeDataTopPlist{
     NSString *documentsPath = kTaskFilePath;
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"MY_Identiferi.plist"];
     BOOL isExit  = [WHCFileManager isExistsAtPath:plistPath];
     if (isExit) {
         NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-        dataDictionary[@"deViceType"] = self.deviectype;
+        NSDate *senddate = [NSDate date];
+        NSString *date2 = [NSString stringWithFormat:@"%ld", (long)[senddate timeIntervalSince1970]];
+        dataDictionary[@"lastTime"] = date2;
         BOOL result =   [dataDictionary writeToFile:plistPath atomically:YES];
         if (!result) {
             exit(0);
+        }else{
+            NSLog(@"we save time success");
         }
     }
 }

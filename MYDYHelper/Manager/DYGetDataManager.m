@@ -96,26 +96,6 @@
 
 -(void)configDataWithDic:(NSMutableDictionary *)data{
     
-                NSDate *senddate = [NSDate date];
-    
-                NSString *date2 = [NSString stringWithFormat:@"%ld", (long)[senddate timeIntervalSince1970]];
-    
-                NSString *plistPath = [[WHCFileManager homeDir] stringByAppendingPathComponent:@"test.plist"];
-    
-                NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    
-                if (!dataDictionary){
-                    dataDictionary = [NSMutableDictionary new];
-                }
-                [dataDictionary setObject:data forKey:date2];
-                BOOL resylt = [dataDictionary writeToFile:plistPath atomically:YES];
-                if (resylt) {
-                        NSLog(@"eeeeeeee  001%@" , plistPath);
-    
-                }else{
-                    NSLog(@"eeeeeeee  002%@",plistPath);
-                }
-    
     //        [[SocketManager sharedQueue] sendMessageAction:block_arg2];
     
     

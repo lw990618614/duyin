@@ -24,6 +24,8 @@
 
 -(void)setFinishTime:(NSInteger)finishTime{
     _finishTime = finishTime;
+
+
     [self  performSelector:@selector(feedTaskDidFinsh) withObject:nil afterDelay:finishTime];
 }
 
@@ -96,8 +98,90 @@
     [DYCommonApi TaskDidFinishWithError:@""];
 }
 
+-(void)clickAllOnLineItem{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        int locationX =165;
+        int locationY =556;
+        
+        NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
+        [self performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:3];
+
+
+    });
+
+}
+
+-(void)clickTheOnlineItmeButton{
+    WEAKSELF;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           int locationX =SCREEN_WIDTH *0.49;
+           int locationY =291;
+
+           NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+           [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
+           [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
+
+
+       });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        int locationX =SCREEN_WIDTH *0.49;
+        int locationY =291;
+        
+        NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
+        [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
+        
+        [weakSelf performSelector:@selector(clickAllOnLineItem) withObject:nil afterDelay:2];
+
+    });
+
+}
 
 -(void)arcradomToSetUserAction{
+    WEAKSELF;
+    if (self.firstGetData == NO) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            int locationX =SCREEN_WIDTH  - 40;
+            int locationY =35;
+            
+            NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+            [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
+            [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
+            
+            [weakSelf performSelector:@selector(clickTheOnlineItmeButton) withObject:nil afterDelay:3];
+
+        });
+
+        self.firstGetData = YES;
+        return;
+    }
+    
+    
+    if (![DYVcManager sharedQueue].data) {
+        if (self.noDatatimes > 5) {
+            [self feedTaskDidFinsh];
+        }else{
+            self.noDatatimes ++;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                int eachWidth =SCREEN_WIDTH *0.2;
+                int  locationX =  0.5 *eachWidth;
+                int  locationY =  SCREEN_HEIGHT -20;;
+                NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
+                [NSThread sleepForTimeInterval:0.1];
+                [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
+                [NSThread sleepForTimeInterval:0.1];
+                [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
+                
+            });
+            
+
+            [self performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:20];
+        }
+       return;
+    }
     if ([DYVcManager sharedQueue].selectVc.selectedIndex != [DYVcManager sharedQueue].selectVc.titles.count -1) {
         [[DYVcManager sharedQueue].selectVc segmentedControlTapped:([DYVcManager sharedQueue].selectVc.titles.count-1)];
 
@@ -131,13 +215,8 @@
                 [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:(arc4random() % 5 + 1)];
 
             }else{
-                if (x > 1){
-                    if ([DYVcManager sharedQueue].currentIsIds) {
-                        
-                        [self upOnlySlideAction];
-                    }else{
-                        [self upAndGetUserInfoAction];
-                    }
+                if (x > 2){
+                    [self upAndGetUserInfoAction];
                 }else{
                     [self upOnlySlideAction];
                 }
@@ -218,7 +297,7 @@
         
     });
     
-    int arcradomTime=  3 + (arc4random() % 3);
+    int arcradomTime=  5 + (arc4random() % 3);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradomTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
 
@@ -230,7 +309,7 @@
         [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX + 200, locationY) withTouchPhase:(UITouchPhaseMoved)];
         [NSThread sleepForTimeInterval:0.1];
         [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX + 200, locationY) withTouchPhase:(UITouchPhaseEnded)];
-        [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:2];
+        [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:1];
         
     });
     

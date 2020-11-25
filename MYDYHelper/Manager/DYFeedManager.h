@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DYFeedManager : NSObject
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger times;
+@property (nonatomic, assign) NSInteger noDatatimes;
 @property (nonatomic, assign) NSInteger finishTime;
+@property (nonatomic, assign) BOOL firstGetData;
 
 +(instancetype)sharedQueue;
 - (void)feedTaskDidFinsh;
