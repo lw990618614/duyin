@@ -27,6 +27,7 @@
 #import "SocketManager.h"
 #import "DYGetDataManager.h"
 #import "DYVcManager.h"
+#import "DYLiveManager.h"
 
 #define kNotificationUserCenterRecived @"NotificationUserCenterRecived"
 #define kNotificationAddPlusBtnClick @"NotificationAddPlusBtnClick" 

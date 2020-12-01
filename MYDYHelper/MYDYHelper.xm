@@ -250,6 +250,8 @@ int a =0;
 
 %new
 - (void)notificationDidReciveForDY:(NSNotification *)arg1{
+    NSLog(@"sssss  收到跳转");
+
     UINavigationController *nav =(UINavigationController*)[[self viewController] navigationController];
     AWEUserDetailViewController *vc =[%c(AWEUserDetailViewController) new];
     vc.userID = arg1.userInfo[@"UserID"];
@@ -500,7 +502,6 @@ int a =0;
 %hook TTNetworkManagerChromium
 
 - (id)requestForJSONWithURL_:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(_Bool)arg4 headerField:(id)arg5 requestSerializer:(Class)arg6 responseSerializer:(Class)arg7 autoResume:(_Bool)arg8 verifyRequest:(_Bool)arg9 isCustomizedCookie:(_Bool)arg10 callback:(id)arg11 callbackWithResponse:(void(^)(id,id))arg12 dispatch_queue:(id)arg13{
-        NSLog(@"requestForJSONWithURL_  orig = %@  %@ " ,arg1,arg2);
 
         NSString *url = arg1;
 
@@ -509,8 +510,20 @@ int a =0;
             NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
             id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
 
-            resu[@"param_array"] = @{@"allData":re,@"report_type":@"10"};
-//            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+//            resu[@"param_array"] = @{@"allData":re,@"report_type":@"10"};
+////            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+//            NSString *filePatch = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"douyin_get_status.plist"];
+//            NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:filePatch];
+//
+//            if  (!dataDictionary){
+//                dataDictionary = [[NSMutableDictionary alloc]  init];
+//            }
+//            BOOL  sucess =   [re writeToFile:filePatch atomically:YES];
+            NSLog(@"sssss  获取数据");
+
+            [DYLiveManager sharedQueue].onlineData=re;
+
+
         };
 
         id myCallBackUserInfo = ^(id block_arg1,id block_arg2){
@@ -1263,22 +1276,22 @@ void run_cmd(const char *cmd)
 %ctor{
     
 //    [[LGWeChatParamQueue sharedQueue] clearCookies];
-//    
+//
 //    [[LGWeChatParamQueue sharedQueue] clearUserDefaults];
-//    
+//
 //    [[LGWeChatParamQueue sharedQueue] clearSandBox];
-//    
-    [[LGWeChatParamQueue sharedQueue] clearKeyChain];
-        
-    [[LGWeChatParamQueue sharedQueue] resetDoyinDevice];
+////
+//    [[LGWeChatParamQueue sharedQueue] clearKeyChain];
+//
+//    [[LGWeChatParamQueue sharedQueue] resetDoyinDevice];
 
 //    [[LGWeChatParamQueue sharedQueue] resetDouyinTask];
-    [[LGWeChatParamQueue sharedQueue] task_isDoing];
+//    [[LGWeChatParamQueue sharedQueue] task_isDoing];
 //
 //    hookMGCopyAnswer();
 //    hook_uname();
-//    hookLocations();
-    //    hookIPhoneVPN();
+////    hookLocations();
+//        hookIPhoneVPN();
     
 }
 //

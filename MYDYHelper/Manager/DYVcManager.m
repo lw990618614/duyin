@@ -6,6 +6,11 @@
 //
 
 #import "DYVcManager.h"
+@interface DYVcManager()
+@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic,assign )NSInteger  index;
+
+@end
 
 @implementation DYVcManager
 +(instancetype)sharedQueue

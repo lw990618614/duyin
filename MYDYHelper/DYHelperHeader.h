@@ -355,6 +355,10 @@ typedef void(^Block)();
 
 @interface AWEAwemeModel
 @property(nonatomic) _Bool isAds; // @synthesize isAds=_isAds;
+@property(readonly, copy) NSString *debugDescription;
+
+@property(copy, nonatomic) NSString *descriptionString; // @synthesize descriptionString=_descriptionString;
+@property(copy, nonatomic) NSString *itemID; // @synthesize itemID=_itemID;
 
 @end
 

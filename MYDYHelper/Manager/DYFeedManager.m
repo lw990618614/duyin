@@ -141,23 +141,11 @@
 }
 
 -(void)arcradomToSetUserAction{
-    WEAKSELF;
-    if (self.firstGetData == NO) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            int locationX =SCREEN_WIDTH  - 40;
-            int locationY =35;
-            
-            NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
-            [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
-            [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
-            
-            [weakSelf performSelector:@selector(clickTheOnlineItmeButton) withObject:nil afterDelay:3];
-
-        });
-
-        self.firstGetData = YES;
+    
+    if ([DYVcManager sharedQueue].enable) {
         return;
     }
+    WEAKSELF;
     
     
     if (![DYVcManager sharedQueue].data) {
@@ -202,7 +190,7 @@
 //            [self upOnlySlideAction];
 //        }
         
-         UIViewController *vc = [self getCurrentVC];
+         UIViewController *vc = [DYCommonApi getCurrentVC];
         //        [[DYTaskManager sharedQueue] hasLogined];
 
         NSString  *re =   [[DYVcManager sharedQueue].selectVc compareCurrentVc:vc];
@@ -215,7 +203,7 @@
                 [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:(arc4random() % 5 + 1)];
 
             }else{
-                if (x > 2){
+                if (x > 15){
                     [self upAndGetUserInfoAction];
                 }else{
                     [self upOnlySlideAction];
@@ -232,7 +220,7 @@
     int arcradom =  6 + (arc4random() % 5);
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradom * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        UIViewController *vc = [self getCurrentVC];
+        UIViewController *vc = [DYCommonApi getCurrentVC];
         [[DYTaskManager sharedQueue] hasLogined];
 
          NSLog(@"UIViewControllerUIViewController = %@",vc);
@@ -353,8 +341,6 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        
-
         int locationX =SCREEN_WIDTH *loca;;
         int locationY =SCREEN_HEIGHT *0.5;
         NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
@@ -383,34 +369,5 @@
     
 }
 
-- (UIViewController *)getCurrentVC
-{
-   ///下文中有分析
-    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    UIViewController *currentVC = [self getCurrentVCFrom:rootViewController];
-    return currentVC;
-}
-
-- (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC
-{
-    UIViewController *currentVC;
-    if ([rootVC presentedViewController]) {
-        // 视图是被presented出来的
-        rootVC = [rootVC presentedViewController];
-    }
-
-    if ([rootVC isKindOfClass:[UITabBarController class]]) {
-        // 根视图为UITabBarController
-        currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
-    } else if ([rootVC isKindOfClass:[UINavigationController class]]){
-        // 根视图为UINavigationController
-        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
-    } else {
-        // 根视图为非导航类
-        currentVC = rootVC;
-    }
-    
-    return currentVC;
-}
 
 @end

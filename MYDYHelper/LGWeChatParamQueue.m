@@ -114,8 +114,20 @@ extern char **environ;
         self.deviceLabel.text =dataDictionary[@"deViceType"];
         [keyWindow addSubview:self.deviceLabel];
     }
+    UISwitch * switchView = [[UISwitch alloc] initWithFrame:CGRectMake(10, 140, 60, 40)];
+    //添加开关监听
+    [switchView addTarget:self action:@selector(switchChang:) forControlEvents:(UIControlEventValueChanged)];
+    [switchView setOn:NO];
+    
+    [keyWindow addSubview:switchView];
+
 
 }
+
+-(void)switchChang:(UISwitch *)switchView{
+    [DYVcManager  sharedQueue].enable =switchView.isOn;
+}
+
 
 -(void)enqueue:(NSMutableDictionary *)param
 {
@@ -338,8 +350,18 @@ extern char **environ;
 //        if (!model) {
 //            [[DYFeedManager sharedQueue] arcradomToSetUserAction];
 //        }
-[[DYFeedManager sharedQueue] arcradomToSetUserAction];
-        [DYFeedManager sharedQueue].finishTime = 60*60;
+        int x = arc4random() % 30;
+        if (x >14) {
+            NSLog(@"sssss getOnLineUser");
+
+            [[DYLiveManager sharedQueue] getOnLineUser];
+
+        }else{
+            NSLog(@"sssss arcradomToSetUserAction");
+
+            [[DYFeedManager sharedQueue] arcradomToSetUserAction];
+        }
+        [DYFeedManager sharedQueue].finishTime = 90*60;
     });
     
 }

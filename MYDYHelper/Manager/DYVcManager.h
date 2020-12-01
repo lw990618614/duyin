@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) AWEIMLoginManager *imloginManager;
 
 @property (nonatomic, strong) id data;
+@property (nonatomic, assign) BOOL enable;
 
 
 

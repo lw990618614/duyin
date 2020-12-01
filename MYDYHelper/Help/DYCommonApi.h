@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)TaskDidFinishWithError:(NSString *)errorNumber;
 +(UIWindow *)topLevelWindowGet;
 //+(void)setTheTaskStatus;
++ (UIViewController *)getCurrentVC;
 
 
 @end
