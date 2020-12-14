@@ -98,10 +98,23 @@
     
     //        [[SocketManager sharedQueue] sendMessageAction:block_arg2];
     
-    
+      NSDate *senddate = [NSDate date];
+      NSString *date2 = [NSString stringWithFormat:@"%ld", (long)[senddate timeIntervalSince1970]];
+      [[NSUserDefaults  standardUserDefaults] setObject:date2 forKey:@"kLastGetDataTime"];
+
     data[@"class"] = @"report";
     data[@"app"] = @"douyin";
     data[@"method"] = @"acquisition_task";
+    if ([data[@"hasdata"] intValue]==0) {
+        self.nodataTimes ++;
+        if (self.nodataTimes >10) {
+            [[NSUserDefaults  standardUserDefaults] setObject:@"yes" forKey:@"kUserNeedRefresh"];
+
+            [DYCommonApi TaskDidFinishWithError:nil];
+        }
+    }else{
+        self.nodataTimes = 0;
+    }
     [[SocketManager sharedQueue] sendMessageAction:data];
 
 }

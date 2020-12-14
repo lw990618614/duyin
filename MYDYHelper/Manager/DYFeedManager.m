@@ -25,7 +25,6 @@
 -(void)setFinishTime:(NSInteger)finishTime{
     _finishTime = finishTime;
 
-
     [self  performSelector:@selector(feedTaskDidFinsh) withObject:nil afterDelay:finishTime];
 }
 
@@ -141,6 +140,7 @@
 }
 
 -(void)arcradomToSetUserAction{
+  
     
     if ([DYVcManager sharedQueue].enable) {
         return;
@@ -150,6 +150,8 @@
     
     if (![DYVcManager sharedQueue].data) {
         if (self.noDatatimes > 5) {
+            [[NSUserDefaults  standardUserDefaults] setObject:@"yes" forKey:@"kUserNeedRefresh"];
+
             [self feedTaskDidFinsh];
         }else{
             self.noDatatimes ++;
@@ -170,10 +172,19 @@
         }
        return;
     }
-    if ([DYVcManager sharedQueue].selectVc.selectedIndex != [DYVcManager sharedQueue].selectVc.titles.count -1) {
-        [[DYVcManager sharedQueue].selectVc segmentedControlTapped:([DYVcManager sharedQueue].selectVc.titles.count-1)];
+    
+//    [[DYLiveManager sharedQueue] getOnLineUser];
+    UIViewController *vc = [DYCommonApi getCurrentVC];
+       //        [[DYTaskManager sharedQueue] hasLogined];
 
+       NSString  *re =   [[DYVcManager sharedQueue].selectVc compareCurrentVc:vc];
+       NSLog(@"UIViewControllerUIViewController = %@ class %@  result = %@",vc,[vc class],re);
+    if (![re isEqualToString:@"4"]) {
+        UINavigationController *nav =(UINavigationController*)[vc navigationController];
+        [nav popViewControllerAnimated:YES];
+        [nav dismissViewControllerAnimated:YES completion:nil];
         [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:(arc4random() % 5 + 1)];
+
         
     }else{
         int x = arc4random() % 30;
@@ -190,24 +201,21 @@
 //            [self upOnlySlideAction];
 //        }
         
-         UIViewController *vc = [DYCommonApi getCurrentVC];
-        //        [[DYTaskManager sharedQueue] hasLogined];
+    
 
-        NSString  *re =   [[DYVcManager sharedQueue].selectVc compareCurrentVc:vc];
-        NSLog(@"UIViewControllerUIViewController = %@ class %@  result = %@",vc,[vc class],re);
+         if ([DYVcManager sharedQueue].selectVc.selectedIndex != [DYVcManager sharedQueue].selectVc.titles.count -1) {
+             [[DYVcManager sharedQueue].selectVc segmentedControlTapped:([DYVcManager sharedQueue].selectVc.titles.count-1)];
 
-         if (![re isEqualToString:@"4"]) {
-                UINavigationController *nav =(UINavigationController*)[vc navigationController];
-                [nav popViewControllerAnimated:YES];
-                [nav dismissViewControllerAnimated:YES completion:nil];
-                [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:(arc4random() % 5 + 1)];
+                  [self  performSelector:@selector(arcradomToSetUserAction) withObject:nil afterDelay:(arc4random() % 5 + 1)];
 
             }else{
-                if (x > 15){
+                if (x > 14){
                     [self upAndGetUserInfoAction];
                 }else{
                     [self upOnlySlideAction];
                 }
+                
+
             }
         }
 
@@ -217,7 +225,7 @@
 }
 
 -(void)upOnlySlideAction{
-    int arcradom =  6 + (arc4random() % 5);
+    int arcradom =  8 + (arc4random() % 5);
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradom * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         UIViewController *vc = [DYCommonApi getCurrentVC];
@@ -245,7 +253,7 @@
 
 
 -(void)upAndGetUserInfoAction{
-    int arcradom =  12 + (arc4random() % 5);
+    int arcradom =  8 + (arc4random() % 9);
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradom * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
@@ -285,7 +293,7 @@
         
     });
     
-    int arcradomTime=  5 + (arc4random() % 3);
+    int arcradomTime=  5 + (arc4random() % 6);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(arcradomTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
 

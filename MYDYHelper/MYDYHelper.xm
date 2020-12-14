@@ -33,7 +33,7 @@ int a =0;
     [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];//开启后台任务
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         //通过applicationIdentifier id。判断是否安装某个APP
          [[DYFeedManager sharedQueue] feedTaskDidFinsh];
@@ -76,17 +76,6 @@ int a =0;
 
 %end
 
-%hook AWESearchPlaceholderMultiContentViewController
-
-- (void)slidingViewController:(id)arg1 didSelectIndex:(long long)arg2 transitionType:(long long)arg3{
-    NSLog(@"slidingVislidingViewControllerewController %@,%ld, %ld",arg1,arg2,arg3);
-
-    return %orig;
-
-}
-%end
-
-
 
 %hook AWECommentListViewController
 - (void)viewDidLoad{
@@ -101,21 +90,6 @@ int a =0;
 
 
 %hook AWEFeedSegmentedControl
-
-- (id)initWithTitles:(id)arg1{
-    id re = %orig;
-//    [DYVcManager sharedQueue].selectVc = re;
-    return  re;
-
-}
-
--(id)init{
-    id re = %orig;
-//    [DYVcManager sharedQueue].selectVc = re;
-    return  re;
-
-}
-
 
 %new
 - (NSString *)compareCurrentVc:(UIViewController *)vc{
@@ -160,16 +134,6 @@ int a =0;
 }
 
 %end
-
-//%hook UIApplication
-//- (BOOL)canOpenURL:(NSURL *)url {
-//    NSLog(@"canOpenURLcanOpenURLcanOpenURL");
-//
-//    return  NO;
-//
-//}
-//
-//%end
 
 
 %hook SKStoreProductViewController
@@ -229,7 +193,7 @@ int a =0;
 
 - (void)viewDidLoad{
     if([DYTaskManager sharedQueue].model){
-           [self performSelector:@selector(skipAction) withObject:nil afterDelay:3];
+           [self performSelector:@selector(skipAction) withObject:nil afterDelay:1];
     }
 
     return  %orig;
@@ -369,7 +333,7 @@ int a =0;
 %hook AWEAccountPrivacyAndUserItemAlertView
 - (void)_commonInit{
     if([DYTaskManager sharedQueue].model){
-           [self performSelector:@selector(confirmButtonDidTap) withObject:nil afterDelay:3];
+           [self performSelector:@selector(confirmButtonDidTap) withObject:nil afterDelay:1];
     }
 
     %orig;
@@ -530,6 +494,8 @@ int a =0;
             arg12(block_arg1,block_arg2);
             NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
             id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
+            NSString *hasData =block_arg2?@"1":@"0";
+            resu[@"hasdata"] = hasData;
 
             resu[@"param_array"] = @{@"allData":re,@"report_type":@"1"};
             [[DYGetDataManager sharedQueue] configDataWithDic:resu];
@@ -540,7 +506,8 @@ int a =0;
             arg12(block_arg1,block_arg2);
             NSMutableDictionary *resu = [[NSMutableDictionary alloc]init];
             id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
-
+            NSString *hasData =block_arg2?@"1":@"0";
+            resu[@"hasdata"] = hasData;
             resu[@"param_array"] = @{@"allData":re,@"report_type":@"2"};
             [[DYGetDataManager sharedQueue] configDataWithDic:resu];
             
@@ -554,7 +521,7 @@ int a =0;
             id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
 
             resu[@"param_array"] = @{@"allData":re,@"report_type":@"4"};
-//            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
         };
 
         //直播间
@@ -564,7 +531,7 @@ int a =0;
             id  re = block_arg2?block_arg2:[[NSMutableDictionary alloc]init];
 
             resu[@"param_array"] = @{@"allData":re,@"report_type":@"3"};
-//            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
+            [[DYGetDataManager sharedQueue] configDataWithDic:resu];
         };
 
         
@@ -693,7 +660,7 @@ int a =0;
 
 
 /* ---------------        这是变机代码           ----------    */
-
+/*
 %hook WXOMTAOpenUDID
 + (NSString*) value{
     if([[DYDeviceManager sharedQueue] openudid]){
@@ -999,7 +966,7 @@ int a =0;
     }
 }
 %end
-
+*/
 
 static CFTypeRef (*orig_MGCopyAnswer)(CFStringRef str);
 static CFTypeRef (*orig_MGCopyAnswer_internal)(CFStringRef str, uint32_t* outTypeCode);
@@ -1275,13 +1242,22 @@ void run_cmd(const char *cmd)
 
 %ctor{
     
-//    [[LGWeChatParamQueue sharedQueue] clearCookies];
-//
-//    [[LGWeChatParamQueue sharedQueue] clearUserDefaults];
-//
-//    [[LGWeChatParamQueue sharedQueue] clearSandBox];
-////
-//    [[LGWeChatParamQueue sharedQueue] clearKeyChain];
+    NSUserDefaults*userDefaults= [NSUserDefaults  standardUserDefaults];
+    NSString *refresh = [userDefaults objectForKey:@"kUserNeedRefresh"];
+    [[NSUserDefaults  standardUserDefaults] setObject:nil forKey:@"kLastGetDataTime"];
+    if(refresh){
+        
+        [[NSUserDefaults  standardUserDefaults] setObject:nil forKey:@"kUserNeedRefresh"];
+
+        [[LGWeChatParamQueue sharedQueue] clearCookies];
+        
+        [[LGWeChatParamQueue sharedQueue] clearUserDefaults];
+        
+//        [[LGWeChatParamQueue sharedQueue] clearSandBox];
+        [[LGWeChatParamQueue sharedQueue] clearKeyChain];
+        [LGWeChatParamQueue sharedQueue].justClear = YES;
+    }
+  
 //
 //    [[LGWeChatParamQueue sharedQueue] resetDoyinDevice];
 

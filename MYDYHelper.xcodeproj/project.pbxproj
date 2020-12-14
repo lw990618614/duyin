@@ -32,14 +32,12 @@
 		180082672505D55900428532 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 180082142505D55900428532 /* MJFoundation.m */; };
 		180082682505D55900428532 /* DYDeviceModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 180082162505D55900428532 /* DYDeviceModel.h */; };
 		180082692505D55900428532 /* WHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 180082172505D55900428532 /* WHCFileManager.m */; };
-		1800826A2505D55900428532 /* AppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 180082182505D55900428532 /* AppInfo.h */; };
 		1800826B2505D55900428532 /* DYTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 180082192505D55900428532 /* DYTaskModel.m */; };
 		1800826C2505D55900428532 /* UserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800821A2505D55900428532 /* UserAccount.m */; };
 		1800826D2505D55900428532 /* DYDeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800821B2505D55900428532 /* DYDeviceModel.m */; };
 		1800826E2505D55900428532 /* WHCFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1800821C2505D55900428532 /* WHCFileManager.h */; };
 		1800826F2505D55900428532 /* UserAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 1800821D2505D55900428532 /* UserAccount.h */; };
 		180082702505D55900428532 /* DYTaskModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 1800821E2505D55900428532 /* DYTaskModel.h */; };
-		180082712505D55900428532 /* AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800821F2505D55900428532 /* AppInfo.m */; };
 		180082722505D55900428532 /* AFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 180082232505D55900428532 /* AFSecurityPolicy.h */; };
 		180082732505D55900428532 /* AFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 180082242505D55900428532 /* AFNetworkReachabilityManager.h */; };
 		180082742505D55900428532 /* AFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 180082252505D55900428532 /* AFURLSessionManager.h */; };
@@ -89,6 +87,8 @@
 		180082A52505D57100428532 /* MYDYHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180082A12505D57100428532 /* MYDYHelper.mm */; };
 		180082A62505D57100428532 /* LGWeChatParamQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 180082A22505D57100428532 /* LGWeChatParamQueue.m */; };
 		180082A92505D63700428532 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180082A82505D63700428532 /* CFNetwork.framework */; };
+		1814CCFB2580AD49002604B8 /* DYReFreshManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1814CCF92580AD49002604B8 /* DYReFreshManager.h */; };
+		1814CCFC2580AD49002604B8 /* DYReFreshManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1814CCFA2580AD49002604B8 /* DYReFreshManager.m */; };
 		1817F24024444F660089DC53 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1817F23F24444F660089DC53 /* CoreData.framework */; };
 		1817F24224444F750089DC53 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1817F24124444F750089DC53 /* SystemConfiguration.framework */; };
 		1817F2D52444530A0089DC53 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1817F260244450B10089DC53 /* Security.framework */; };
@@ -117,10 +117,16 @@
 		18275DE1247FBC7800455C4A /* PTFakeTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275DCC247FBC7800455C4A /* PTFakeTouch.m */; };
 		182D0E8F253442D800291DE2 /* DYVcManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 182D0E8D253442D800291DE2 /* DYVcManager.h */; };
 		182D0E90253442D800291DE2 /* DYVcManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182D0E8E253442D800291DE2 /* DYVcManager.m */; };
+		187D658C25835CC2001CAA7C /* AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D658A25835CC2001CAA7C /* AppInfo.m */; };
+		187D658D25835CC2001CAA7C /* AppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 187D658B25835CC2001CAA7C /* AppInfo.h */; };
 		187E01392440672800E24813 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187E01382440672800E24813 /* UIKit.framework */; };
 		187E013B2440672800E24813 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187E013A2440672800E24813 /* Foundation.framework */; };
 		187E013D2440672800E24813 /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187E013C2440672800E24813 /* CydiaSubstrate.framework */; };
 		187E01512440676100E24813 /* MYDYHelper-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 187E01502440676100E24813 /* MYDYHelper-Prefix.pch */; };
+		1892B37A2578E0F10075FF15 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1892B3792578E0F10075FF15 /* QuartzCore.framework */; };
+		1892B4252578E43E0075FF15 /* ZSFakeTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1892B3F72578E43E0075FF15 /* ZSFakeTouch.h */; };
+		1892B4262578E43E0075FF15 /* FixCategoryBug.h in Headers */ = {isa = PBXBuildFile; fileRef = 1892B3F82578E43E0075FF15 /* FixCategoryBug.h */; };
+		1892B4272578E43E0075FF15 /* ZSFakeTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1892B3F92578E43E0075FF15 /* ZSFakeTouch.m */; };
 		E076AB4AA2CD0D589AA0D04E /* Pods_MYDYHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B50EF3643F80B5DC4A08F6AE /* Pods_MYDYHelper.framework */; };
 /* End PBXBuildFile section */
 
@@ -160,14 +166,12 @@
 		180082142505D55900428532 /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
 		180082162505D55900428532 /* DYDeviceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYDeviceModel.h; sourceTree = "<group>"; };
 		180082172505D55900428532 /* WHCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHCFileManager.m; sourceTree = "<group>"; };
-		180082182505D55900428532 /* AppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInfo.h; sourceTree = "<group>"; };
 		180082192505D55900428532 /* DYTaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYTaskModel.m; sourceTree = "<group>"; };
 		1800821A2505D55900428532 /* UserAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAccount.m; sourceTree = "<group>"; };
 		1800821B2505D55900428532 /* DYDeviceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYDeviceModel.m; sourceTree = "<group>"; };
 		1800821C2505D55900428532 /* WHCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHCFileManager.h; sourceTree = "<group>"; };
 		1800821D2505D55900428532 /* UserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAccount.h; sourceTree = "<group>"; };
 		1800821E2505D55900428532 /* DYTaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYTaskModel.h; sourceTree = "<group>"; };
-		1800821F2505D55900428532 /* AppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInfo.m; sourceTree = "<group>"; };
 		180082232505D55900428532 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
 		180082242505D55900428532 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
 		180082252505D55900428532 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 		180082A12505D57100428532 /* MYDYHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MYDYHelper.mm; sourceTree = "<group>"; };
 		180082A22505D57100428532 /* LGWeChatParamQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGWeChatParamQueue.m; sourceTree = "<group>"; };
 		180082A82505D63700428532 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		1814CCF92580AD49002604B8 /* DYReFreshManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYReFreshManager.h; sourceTree = "<group>"; };
+		1814CCFA2580AD49002604B8 /* DYReFreshManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYReFreshManager.m; sourceTree = "<group>"; };
 		1817F23F24444F660089DC53 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		1817F24124444F750089DC53 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		1817F260244450B10089DC53 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
@@ -249,6 +255,8 @@
 		18275DCD247FBC7800455C4A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		182D0E8D253442D800291DE2 /* DYVcManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYVcManager.h; sourceTree = "<group>"; };
 		182D0E8E253442D800291DE2 /* DYVcManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYVcManager.m; sourceTree = "<group>"; };
+		187D658A25835CC2001CAA7C /* AppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInfo.m; sourceTree = "<group>"; };
+		187D658B25835CC2001CAA7C /* AppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInfo.h; sourceTree = "<group>"; };
 		187E01352440672800E24813 /* MYDYHelper.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = MYDYHelper.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		187E01382440672800E24813 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		187E013A2440672800E24813 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -256,6 +264,11 @@
 		187E01412440672800E24813 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
 		187E014A2440672800E24813 /* MYDYHelper.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MYDYHelper.plist; sourceTree = "<group>"; };
 		187E01502440676100E24813 /* MYDYHelper-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MYDYHelper-Prefix.pch"; path = "MYDYHelper/MYDYHelper-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		1892B3792578E0F10075FF15 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		1892B3F72578E43E0075FF15 /* ZSFakeTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSFakeTouch.h; sourceTree = "<group>"; };
+		1892B3F82578E43E0075FF15 /* FixCategoryBug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixCategoryBug.h; sourceTree = "<group>"; };
+		1892B3F92578E43E0075FF15 /* ZSFakeTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSFakeTouch.m; sourceTree = "<group>"; };
+		1892B3FA2578E43E0075FF15 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76C062ECB5406E5AD31005F5 /* Pods-MYDYHelper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYDYHelper.debug.xcconfig"; path = "Target Support Files/Pods-MYDYHelper/Pods-MYDYHelper.debug.xcconfig"; sourceTree = "<group>"; };
 		77F8386AB9816FAA10DD9D6F /* Pods-MYDYHelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MYDYHelper.release.xcconfig"; path = "Target Support Files/Pods-MYDYHelper/Pods-MYDYHelper.release.xcconfig"; sourceTree = "<group>"; };
 		B50EF3643F80B5DC4A08F6AE /* Pods_MYDYHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MYDYHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,6 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1892B37A2578E0F10075FF15 /* QuartzCore.framework in Frameworks */,
 				1817F2D924445A980089DC53 /* CoreGraphics.framework in Frameworks */,
 				1817F2D7244458A30089DC53 /* MobileCoreServices.framework in Frameworks */,
 				180082A92505D63700428532 /* CFNetwork.framework in Frameworks */,
@@ -329,14 +343,12 @@
 			children = (
 				180082162505D55900428532 /* DYDeviceModel.h */,
 				180082172505D55900428532 /* WHCFileManager.m */,
-				180082182505D55900428532 /* AppInfo.h */,
 				180082192505D55900428532 /* DYTaskModel.m */,
 				1800821A2505D55900428532 /* UserAccount.m */,
 				1800821B2505D55900428532 /* DYDeviceModel.m */,
 				1800821C2505D55900428532 /* WHCFileManager.h */,
 				1800821D2505D55900428532 /* UserAccount.h */,
 				1800821E2505D55900428532 /* DYTaskModel.h */,
-				1800821F2505D55900428532 /* AppInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -407,6 +419,8 @@
 				180082422505D55900428532 /* SocketManager.m */,
 				182D0E8D253442D800291DE2 /* DYVcManager.h */,
 				182D0E8E253442D800291DE2 /* DYVcManager.m */,
+				1814CCF92580AD49002604B8 /* DYReFreshManager.h */,
+				1814CCFA2580AD49002604B8 /* DYReFreshManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -416,6 +430,8 @@
 			children = (
 				180082502505D55900428532 /* DYCommonApi.h */,
 				1800824D2505D55900428532 /* DYCommonApi.m */,
+				187D658B25835CC2001CAA7C /* AppInfo.h */,
+				187D658A25835CC2001CAA7C /* AppInfo.m */,
 				1800824E2505D55900428532 /* NSTimer+FY.h */,
 				1800824B2505D55900428532 /* NSTimer+FY.m */,
 				1800824C2505D55900428532 /* YMSocketUtils.h */,
@@ -456,20 +472,20 @@
 		18275DBD247FBC7800455C4A /* head */ = {
 			isa = PBXGroup;
 			children = (
+				18275DC6247FBC7800455C4A /* FixCategoryBug.h */,
 				18275DBE247FBC7800455C4A /* IOHIDEvent+KIF.h */,
+				18275DC7247FBC7800455C4A /* IOHIDEvent+KIF.m */,
+				18275DCB247FBC7800455C4A /* LoadableCategory.h */,
 				18275DBF247FBC7800455C4A /* UIApplication-KIFAdditions.h */,
-				18275DC0247FBC7800455C4A /* UIWindow-KIFAdditions.m */,
+				18275DC5247FBC7800455C4A /* UIApplication-KIFAdditions.m */,
+				18275DC3247FBC7800455C4A /* UIEvent+KIFAdditions.h */,
+				18275DCA247FBC7800455C4A /* UIEvent+KIFAdditions.m */,
+				18275DC9247FBC7800455C4A /* UITouch-KIFAdditions.h */,
 				18275DC1247FBC7800455C4A /* UITouch-KIFAdditions.m */,
 				18275DC2247FBC7800455C4A /* UIView-KIFAdditions.h */,
-				18275DC3247FBC7800455C4A /* UIEvent+KIFAdditions.h */,
-				18275DC4247FBC7800455C4A /* UIWindow-KIFAdditions.h */,
-				18275DC5247FBC7800455C4A /* UIApplication-KIFAdditions.m */,
-				18275DC6247FBC7800455C4A /* FixCategoryBug.h */,
-				18275DC7247FBC7800455C4A /* IOHIDEvent+KIF.m */,
 				18275DC8247FBC7800455C4A /* UIView-KIFAdditions.m */,
-				18275DC9247FBC7800455C4A /* UITouch-KIFAdditions.h */,
-				18275DCA247FBC7800455C4A /* UIEvent+KIFAdditions.m */,
-				18275DCB247FBC7800455C4A /* LoadableCategory.h */,
+				18275DC4247FBC7800455C4A /* UIWindow-KIFAdditions.h */,
+				18275DC0247FBC7800455C4A /* UIWindow-KIFAdditions.m */,
 			);
 			path = head;
 			sourceTree = "<group>";
@@ -495,6 +511,7 @@
 		187E01372440672800E24813 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1892B3792578E0F10075FF15 /* QuartzCore.framework */,
 				180082A82505D63700428532 /* CFNetwork.framework */,
 				18275DB4247FBC4200455C4A /* PTFakeTouch.framework */,
 				18275D57247FB6C900455C4A /* JavaScriptCore.framework */,
@@ -517,6 +534,7 @@
 		187E013E2440672800E24813 /* MYDYHelper */ = {
 			isa = PBXGroup;
 			children = (
+				1892B3F62578E43E0075FF15 /* ZSFakeTouch */,
 				180081FB2505D55900428532 /* GCD */,
 				1800824A2505D55900428532 /* Help */,
 				180081FF2505D55900428532 /* Jeson */,
@@ -576,6 +594,25 @@
 			path = DynamicLibraries;
 			sourceTree = "<group>";
 		};
+		1892B3F62578E43E0075FF15 /* ZSFakeTouch */ = {
+			isa = PBXGroup;
+			children = (
+				1892B3F72578E43E0075FF15 /* ZSFakeTouch.h */,
+				1892B3F82578E43E0075FF15 /* FixCategoryBug.h */,
+				1892B3F92578E43E0075FF15 /* ZSFakeTouch.m */,
+				1892B3FA2578E43E0075FF15 /* Info.plist */,
+				1892B3FB2578E43E0075FF15 /* addition */,
+			);
+			path = ZSFakeTouch;
+			sourceTree = "<group>";
+		};
+		1892B3FB2578E43E0075FF15 /* addition */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = addition;
+			sourceTree = "<group>";
+		};
 		B6F495A57EA2B31D373037A0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,6 +635,8 @@
 				180082602505D55900428532 /* MJPropertyType.h in Headers */,
 				180082862505D55900428532 /* DYDeviceManager.h in Headers */,
 				180082542505D55900428532 /* NSObject+MJClass.h in Headers */,
+				1892B4252578E43E0075FF15 /* ZSFakeTouch.h in Headers */,
+				1892B4262578E43E0075FF15 /* FixCategoryBug.h in Headers */,
 				18275DE0247FBC7800455C4A /* LoadableCategory.h in Headers */,
 				1800826E2505D55900428532 /* WHCFileManager.h in Headers */,
 				180082752505D55900428532 /* AFURLRequestSerialization.h in Headers */,
@@ -618,9 +657,10 @@
 				180082872505D55900428532 /* DYShareManager.h in Headers */,
 				18275DDB247FBC7800455C4A /* FixCategoryBug.h in Headers */,
 				180082972505D55900428532 /* DYFollowManager.h in Headers */,
+				187D658D25835CC2001CAA7C /* AppInfo.h in Headers */,
 				180082572505D55900428532 /* NSObject+MJProperty.h in Headers */,
-				1800826A2505D55900428532 /* AppInfo.h in Headers */,
 				187E01512440676100E24813 /* MYDYHelper-Prefix.pch in Headers */,
+				1814CCFB2580AD49002604B8 /* DYReFreshManager.h in Headers */,
 				1800829D2505D55A00428532 /* DYCommonApi.h in Headers */,
 				1800828A2505D55900428532 /* DYFeedManager.h in Headers */,
 				180082702505D55900428532 /* DYTaskModel.h in Headers */,
@@ -804,6 +844,7 @@
 				1800827A2505D55900428532 /* AFURLRequestSerialization.m in Sources */,
 				180082562505D55900428532 /* MJPropertyType.m in Sources */,
 				182D0E90253442D800291DE2 /* DYVcManager.m in Sources */,
+				187D658C25835CC2001CAA7C /* AppInfo.m in Sources */,
 				1800825E2505D55900428532 /* MJExtensionConst.m in Sources */,
 				180082A52505D57100428532 /* MYDYHelper.mm in Sources */,
 				180082512505D55900428532 /* GCDAsyncSocket.m in Sources */,
@@ -816,6 +857,7 @@
 				1800829C2505D55A00428532 /* YMSocketUtils.m in Sources */,
 				180082902505D55900428532 /* SocketManager.m in Sources */,
 				1800826C2505D55900428532 /* UserAccount.m in Sources */,
+				1892B4272578E43E0075FF15 /* ZSFakeTouch.m in Sources */,
 				180082632505D55900428532 /* MJPropertyKey.m in Sources */,
 				180082882505D55900428532 /* DYFollowManager.m in Sources */,
 				1800827C2505D55900428532 /* AFNetworkReachabilityManager.m in Sources */,
@@ -827,6 +869,7 @@
 				180082932505D55900428532 /* DYDeviceManager.m in Sources */,
 				180082772505D55900428532 /* AFHTTPSessionManager.m in Sources */,
 				180082622505D55900428532 /* NSString+MJExtension.m in Sources */,
+				1814CCFC2580AD49002604B8 /* DYReFreshManager.m in Sources */,
 				180082942505D55900428532 /* DYLikeManager.m in Sources */,
 				18275DD5247FBC7800455C4A /* UIWindow-KIFAdditions.m in Sources */,
 				1800829A2505D55900428532 /* DYCommonApi.m in Sources */,
@@ -839,7 +882,6 @@
 				180082832505D55900428532 /* DYCommentManager.m in Sources */,
 				180082812505D55900428532 /* DYGetDataManager.m in Sources */,
 				180082592505D55900428532 /* NSObject+MJKeyValue.m in Sources */,
-				180082712505D55900428532 /* AppInfo.m in Sources */,
 				180082922505D55900428532 /* DYShareManager.m in Sources */,
 				18275DE1247FBC7800455C4A /* PTFakeTouch.m in Sources */,
 				180082962505D55900428532 /* DYTaskManager.m in Sources */,
@@ -928,6 +970,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MYDYHelper/PTFakeTouch/PTFakeTouch",
 					"$(PROJECT_DIR)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MYDYHelper/MYDYHelper-Prefix.pch";
@@ -935,7 +978,7 @@
 				MonkeyDevBuildPackageOnAnyBuild = NO;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
-				MonkeyDevDeviceIP = 192.168.199.75;
+				MonkeyDevDeviceIP = 192.168.174.247;
 				MonkeyDevDevicePassword = "";
 				MonkeyDevDevicePort = 22;
 				MonkeyDevInstallOnAnyBuild = YES;
@@ -963,6 +1006,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MYDYHelper/PTFakeTouch/PTFakeTouch",
 					"$(PROJECT_DIR)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MYDYHelper/MYDYHelper-Prefix.pch";
@@ -970,7 +1014,7 @@
 				MonkeyDevBuildPackageOnAnyBuild = NO;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
-				MonkeyDevDeviceIP = 192.168.199.75;
+				MonkeyDevDeviceIP = 192.168.174.247;
 				MonkeyDevDevicePassword = "";
 				MonkeyDevDevicePort = 22;
 				MonkeyDevInstallOnAnyBuild = YES;

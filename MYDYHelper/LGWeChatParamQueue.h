@@ -18,13 +18,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LGWeChatParamQueue : NSObject
 
+@property (nonatomic, assign) BOOL justClear;
+
+
 @property (nonatomic, strong) UILabel *deviceLabel;
 
 
 @property (nonatomic, strong) NSMutableArray *queue;
 
 
-@property (nonatomic, strong) NSTimer *connectTimer;
+//@property (nonatomic, strong) NSTimer *connectTimer;
 
 
 +(instancetype)sharedQueue;

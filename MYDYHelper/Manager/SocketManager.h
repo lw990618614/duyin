@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString * deviectype;
 @property (nonatomic, copy) NSString * openudid;
 @property (nonatomic, assign) BOOL connected;
+@property (nonatomic, assign) BOOL isfirstLoad;
+@property (nonatomic, assign) NSInteger lastTime;
 - (void)connectAction;
 - (void)sendMessageAction:(id)sender;
 - (void)longConnectToSocket;

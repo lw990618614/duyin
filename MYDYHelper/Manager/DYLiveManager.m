@@ -141,7 +141,7 @@
         NSInteger Id = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseBegan)];
         [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseMoved)];
         [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationY) withTouchPhase:(UITouchPhaseEnded)];
-        [weakSelf performSelector:@selector(clickTheOnlineItmeButton) withObject:nil afterDelay:3];
+        [weakSelf performSelector:@selector(clickTheOnlineItmeButton) withObject:nil afterDelay:5];
     });
 
 }
@@ -276,7 +276,7 @@
             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseMoved)];
             [NSThread sleepForTimeInterval:0.2];
             [PTFakeTouch fakeTouchId:Id AtPoint:CGPointMake(locationX, locationX) withTouchPhase:(UITouchPhaseEnded)];
-            [self performSelector:@selector(chooseGetOnlineInfoOrOnlyUp) withObject:nil afterDelay:3];
+            [self performSelector:@selector(chooseGetOnlineInfoOrOnlyUp) withObject:nil afterDelay:10];
             
         });
         

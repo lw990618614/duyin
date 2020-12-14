@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) AWEAwemePlayInteractionViewController *viewController;//
 @property (nonatomic, strong) NSMutableArray *dataArray;//
+@property (nonatomic, assign) NSInteger   nodataTimes;//
 
 
 +(instancetype)sharedQueue;

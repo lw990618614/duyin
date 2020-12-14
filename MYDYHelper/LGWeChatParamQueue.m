@@ -16,7 +16,6 @@
 #include <dirent.h>
 #include <ftw.h>
 #import "WHCFileManager.h"
-#import "AppInfo.h"
 #import <PTFakeTouch/PTFakeTouch.h>
 
 
@@ -56,6 +55,7 @@ extern char **environ;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         queue = [[LGWeChatParamQueue alloc] init];
+        [queue socketTimer];
     });
     return queue;
 }
@@ -76,28 +76,48 @@ extern char **environ;
                                                      name:UIKeyboardDidHideNotification
                                                    object:nil];
         
-        NSTimer *socketTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(socketTimer) userInfo:nil repeats:YES];
-        [[NSRunLoop mainRunLoop] addTimer:socketTimer forMode:NSRunLoopCommonModes];
-
+        
+        
     }
     return self;
 }
 
 - (void)socketTimer
 {
+    
     if ([SocketManager sharedQueue].connected) {
         [[SocketManager sharedQueue] longConnectToSocket];
     }else{
         [[SocketManager sharedQueue] connectAction];
     }
+    
+    NSDate *senddate = [NSDate date];
+      NSString *date2 = [NSString stringWithFormat:@"%ld", (long)[senddate timeIntervalSince1970]];
+      NSString *getTime = [[NSUserDefaults  standardUserDefaults] objectForKey:@"kLastGetDataTime"];
+      NSInteger time =  date2.integerValue - [getTime integerValue];
+      
+      if (time > 5 *60 &&getTime ) {
+          [DYCommonApi TaskDidFinishWithError:@""];
+          return;
+      }else{
+          NSLog(@"kLastGetDataTime xiangcha = %d",time);
+      }
+      
+    WEAKSELF;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf  performSelector:@selector(socketTimer) withObject:nil afterDelay:1];
+        
+    });
+
 }
 
 
 -(UILabel *)deviceLabel{
     if (_deviceLabel== nil) {
-        _deviceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, SCREEN_WIDTH, 40)];
+        _deviceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, SCREEN_WIDTH, 50)];
         _deviceLabel.textColor = [UIColor blueColor];
-        _deviceLabel.font  =[UIFont boldSystemFontOfSize:35];
+        _deviceLabel.font  =[UIFont boldSystemFontOfSize:20];
+        _deviceLabel.numberOfLines = 0;
         _deviceLabel.text = @"";
     }
     return _deviceLabel;;
@@ -111,7 +131,9 @@ extern char **environ;
     if (!isExit) {
     }else{
         NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-        self.deviceLabel.text =dataDictionary[@"deViceType"];
+        NSString *ip =  [AppInfo getCurrentLocalIP];
+        self.deviceLabel.text = [NSString stringWithFormat:@"%@ \n %@",dataDictionary[@"deViceType"],ip] ;
+        
         [keyWindow addSubview:self.deviceLabel];
     }
     UISwitch * switchView = [[UISwitch alloc] initWithFrame:CGRectMake(10, 140, 60, 40)];
@@ -167,18 +189,19 @@ extern char **environ;
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"KeyboardDidShow"];
 }
 
--(NSTimer *)connectTimer{
-    if (!_connectTimer) {
-        __weak typeof(self) weakSelf = self;
-        int arcradom =  5 + (arc4random() % 20);
-        _connectTimer = [NSTimer fy_timerWithTimeInterval:arcradom actionBlock:^(NSTimer *timer) {
-            [weakSelf longConnectToSocket];
-        } runLoopMode:NSRunLoopCommonModes repeats:YES];
-    }
-    return _connectTimer;
-}
+//-(NSTimer *)connectTimer{
+//    if (!_connectTimer) {
+//        __weak typeof(self) weakSelf = self;
+//        int arcradom =  5 + (arc4random() % 20);
+//        _connectTimer = [NSTimer fy_timerWithTimeInterval:arcradom actionBlock:^(NSTimer *timer) {
+//            [weakSelf longConnectToSocket];
+//        } runLoopMode:NSRunLoopCommonModes repeats:YES];
+//    }
+//    return _connectTimer;
+//}
 
 -(void)longConnectToSocket{
+    
     NSString *plistPath = [kUserFileDeviceAndTaskPath stringByAppendingPathComponent:kTaskPlist];
     NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     //    if ([dataDictionary[@"chupengIsFinish"] intValue] == 1) {
@@ -301,7 +324,7 @@ extern char **environ;
     [self andTheDeviceNumberToKeyWindow];
 
     //    [[DYFeedManager sharedQueue] feedTaskStart];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(15.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //            [[DYFeedManager sharedQueue] feedTaskStart];
         //        [[DYFollowManager sharedQueue] searchTheTargetUserWithUserID:@"96245704530"];
         //            [[DYCommentManager sharedQueue] getCommentsListForTheMovieWithAction];
@@ -350,8 +373,22 @@ extern char **environ;
 //        if (!model) {
 //            [[DYFeedManager sharedQueue] arcradomToSetUserAction];
 //        }
+        if (self.justClear) {
+            [[DYReFreshManager sharedQueue] clickTheCenter];
+            [DYFeedManager sharedQueue].finishTime = 5*60;
+
+            return;
+        }
+        
+        if (![DYVcManager sharedQueue].data) {
+            [DYFeedManager sharedQueue].finishTime = 90*60;
+            [[DYFeedManager sharedQueue] arcradomToSetUserAction];
+
+            return;
+        }
+
         int x = arc4random() % 30;
-        if (x >14) {
+        if (x >19) {
             NSLog(@"sssss getOnLineUser");
 
             [[DYLiveManager sharedQueue] getOnLineUser];
@@ -361,7 +398,7 @@ extern char **environ;
 
             [[DYFeedManager sharedQueue] arcradomToSetUserAction];
         }
-        [DYFeedManager sharedQueue].finishTime = 90*60;
+        [DYFeedManager sharedQueue].finishTime = 9*60*60;
     });
     
 }
@@ -404,7 +441,6 @@ extern char **environ;
 
 - (void)clearUserDefaults {
     NSUserDefaults*userDefaults= [NSUserDefaults  standardUserDefaults];
-
     NSDictionary*dic = [userDefaults dictionaryRepresentation];
     NSArray *keysting = [dic allKeys];
     NSString *allkey= [keysting componentsJoinedByString:@","];

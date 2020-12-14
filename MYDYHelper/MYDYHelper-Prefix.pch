@@ -28,6 +28,10 @@
 #import "DYGetDataManager.h"
 #import "DYVcManager.h"
 #import "DYLiveManager.h"
+#import "ZSFakeTouch.h"
+#import <QuartzCore/QuartzCore.h>
+#import "DYReFreshManager.h"
+#import "AppInfo.h"
 
 #define kNotificationUserCenterRecived @"NotificationUserCenterRecived"
 #define kNotificationAddPlusBtnClick @"NotificationAddPlusBtnClick" 
